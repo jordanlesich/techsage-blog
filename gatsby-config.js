@@ -4,7 +4,7 @@ module.exports = {
     title: `techSage`,
     author: `Jordan Lesich`,
     description: `Sage Words for all things web, tech, development, soft skills, self-mastery, and philosophy`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://priceless-albattani-065763.netlify.com/`,
     social: {
       twitter: `jordanlesich`,
     },
