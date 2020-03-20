@@ -11,9 +11,9 @@ collections:
     folder: content/blog
     create: true
     fields:
-      - { name: path, label: Path }
-      - { name: date, label: Date, widget: date }
       - { name: title, label: Title }
-      - { name: description, label: Description }
-      - { name: header-image, label: Top Image, widget: image}
+      - { name: date, label: Date, widget: date }
+      - { name: path, label: Path }
+      - { name: subject, label: Subject, widget: select, options: ["Sagacity", "Creations", "Code", "Wellness", "Profiles", "Personal"]}
       - { name: body, label: Body, widget: markdown }
+      - { name: header-image, label: Top Image, widget: image}
