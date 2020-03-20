@@ -2,8 +2,8 @@ backend:
   name: github
   repo: jordanlesich/techsage-blog
 
-media_folder: static/assets
-public_folder: assets
+media_folder: /static/assets
+public_folder: /assets
 
 collections:
   - name: blog
