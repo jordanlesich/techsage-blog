@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: jordanlesich/techsage-blog.git
+  repo: jordanlesich/techsage-blog
 
 media_folder: static/assets
 public_folder: assets
