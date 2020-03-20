@@ -15,4 +15,5 @@ collections:
       - { name: date, label: Date, widget: date }
       - { name: title, label: Title }
       - { name: description, label: Description }
+      - { name: header-image, label: Top Image, widget: image}
       - { name: body, label: Body, widget: markdown }
