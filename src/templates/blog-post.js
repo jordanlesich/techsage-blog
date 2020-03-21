@@ -21,7 +21,7 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <img src={post.frontmatter.header_image} alt={post.frontmatter.header_image}/>
+        <svg>{post.frontmatter.header_image}</svg>
         <h1>{post.frontmatter.title}</h1>
         <p
           style={{
@@ -84,6 +84,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       body
+      timeToRead
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

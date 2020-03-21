@@ -15,5 +15,6 @@ collections:
       - { name: date, label: Date, widget: date }
       - { name: path, label: Path }
       - { name: subject, label: Subject, widget: select, options: ["Sagacity", "Creations", "Code", "Wellness", "Profiles", "Personal"]}
-      - { name: body, label: Body, widget: markdown }
       - { name: header-image, label: Top Image, widget: image}
+      - { name: body, label: Body, widget: markdown }
+// may need to add description back
