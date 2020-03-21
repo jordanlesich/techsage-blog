@@ -3,7 +3,7 @@ title: Staying Sage in a Time of Panic
 date: 2020-03-21T13:42:29.882Z
 path: /sage
 subject: Sagacity
-header-image: /assets/sample-card.svg
+header-image: /assets/marcus.jpg
 ---
 ## Sample text
 
