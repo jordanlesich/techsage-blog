@@ -1,9 +1,10 @@
 ---
-title: Staying Sage in a Time of Panic 2
+title: Staying Sage in a Time of Panic 3
 date: 2020-03-21T13:42:29.882Z
 path: /sage
 subject: Sagacity
 header-image: /assets/sample-card.svg
+alt: globe symbol with mask
 ---
 ## Sample text
 
