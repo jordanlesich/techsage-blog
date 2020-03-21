@@ -48,14 +48,14 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          {
-            resolve: "gatsby-plugin-react-svg",
-            options: {
-              rule: {
-                include: "/content/assets"
-              },
-            }
-          },
+          // {
+          //   resolve: "gatsby-plugin-react-svg",
+          //   options: {
+          //     rule: {
+          //       include: "/content/assets"
+          //     },
+          //   }
+          // },
           {
             resolve: `gatsby-remark-vscode`,
           },

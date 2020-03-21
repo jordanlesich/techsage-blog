@@ -16,4 +16,5 @@ collections:
       - { name: path, label: Path }
       - { name: subject, label: Subject, widget: select, options: ["Sagacity", "Creations", "Code", "Wellness", "Profiles", "Personal"]}
       - { name: header-image, label: Top Image, widget: image}
+      - { name: alt, label: Alt Text for Image, widget: text}
       - { name: body, label: Body, widget: markdown }

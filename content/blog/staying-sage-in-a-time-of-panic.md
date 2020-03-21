@@ -4,6 +4,7 @@ date: 2020-03-21T13:42:29.882Z
 path: /sage
 subject: Sagacity
 header-image: /assets/sample-card.svg
+alt: this is alt text
 ---
 ## Sample text
 

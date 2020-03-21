@@ -22,7 +22,7 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <img src={blogSVG} />
+        <img src={blogSVG} alt={post.frontmatter.alt || post.frontmatter.title} />
         <h1>{post.frontmatter.title}</h1>
         <p
           style={{
@@ -43,6 +43,16 @@ class BlogPostTemplate extends React.Component {
           }}
         >
           {post.timeToRead} Minute Read
+        </p>
+        <p
+          style={{
+            ...scale(-1 / 5),
+            display: `block`,
+            marginBottom: rhythm(1),
+            marginTop: rhythm(-1),
+          }}
+        >
+          {post.frontmatter.subject} 
         </p>
         <MDXRenderer>{post.body}</MDXRenderer>
         <hr
@@ -99,8 +109,9 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        description
         header_image
+        subject
+        alt
       }
     }
   }
