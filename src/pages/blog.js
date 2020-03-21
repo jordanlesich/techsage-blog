@@ -4,7 +4,6 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
 import Button from "../components/button"
 
 class Blog extends React.Component {
@@ -20,13 +19,10 @@ class Blog extends React.Component {
         <div style={{ margin: "20px 0 40px" }}>
           {posts.map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug
+            const thumbnail = node.frontmatter.header_image
             return (
               <div key={node.fields.slug}>
-                <h3
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
-                >
+                <h3>
                   <Link
                     style={{ boxShadow: `none` }}
                     to={`blog${node.fields.slug}`}
@@ -34,7 +30,10 @@ class Blog extends React.Component {
                     {title}
                   </Link>
                 </h3>
+                <img src={thumbnail} alt={node.frontmatter.alt}/>
                 <small>{node.frontmatter.date}</small>
+                <small>{node.frontmatter.subject}</small>
+                <small>{node.timeToRead} Min Read</small>
                 <p
                   dangerouslySetInnerHTML={{
                     __html: node.frontmatter.description || node.excerpt,
@@ -65,13 +64,16 @@ export const pageQuery = graphql`
       edges {
         node {
           excerpt
+          timeToRead
           fields {
             slug
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
-            description
+            subject
+            header_image
+            alt
           }
         }
       }

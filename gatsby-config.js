@@ -4,7 +4,7 @@ module.exports = {
     title: `techSage`,
     author: `Jordan Lesich`,
     description: `Sage Words for all things web, tech, development, soft skills, self-mastery, and philosophy`,
-    siteUrl: `https://priceless-albattani-065763.netlify.com/`,
+    siteUrl: `https://techsage.dev/`,
     social: {
       twitter: `jordanlesich`,
     },
@@ -88,11 +88,11 @@ module.exports = {
         icon: `content/assets/gatsby-icon.png`,
       },
     },
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-typography`,
+    //   options: {
+    //     pathToConfigModule: `src/utils/typography`,
+    //   },
+    // },
   ],
 }
