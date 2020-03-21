@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-
+// import SVG from 'svg-inline-react'
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -12,6 +12,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.mdx
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
+    const blogSVG = post.frontmatter.header_image
 
     console.log(post)
 
@@ -21,7 +22,7 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <svg>{post.frontmatter.header_image}</svg>
+        <img src={blogSVG} />
         <h1>{post.frontmatter.title}</h1>
         <p
           style={{
