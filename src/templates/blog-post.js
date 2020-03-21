@@ -34,6 +34,16 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
         </p>
+        <p
+          style={{
+            ...scale(-1 / 5),
+            display: `block`,
+            marginBottom: rhythm(1),
+            marginTop: rhythm(-1),
+          }}
+        >
+          {post.timeToRead} Minute Read
+        </p>
         <MDXRenderer>{post.body}</MDXRenderer>
         <hr
           style={{
