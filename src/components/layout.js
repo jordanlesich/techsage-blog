@@ -1,6 +1,21 @@
 import React from "react"
+import Header from './header'
 // import { Link } from "gatsby"
-// import styled from "styled-components"
+import styled, {createGlobalStyle} from "styled-components"
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #262626;
+  }
+  a {
+    text-decoration: none;
+  }
+`
 
 
 class Layout extends React.Component {
@@ -9,61 +24,24 @@ class Layout extends React.Component {
     const {children} = this.props
     // const rootPath = `${__PATH_PREFIX__}/`
     // const blogPath = `${__PATH_PREFIX__}/blog/`
-    // let header
 
-    // if (location.pathname === rootPath || location.pathname === blogPath) {
-    //   header = (
-    //     <h1
-    //       style={{
-    //         ...scale(1.5),
-    //         marginBottom: rhythm(1.5),
-    //         marginTop: 0,
-    //       }}
-    //     >
-    //       <Link
-    //         style={{
-    //           boxShadow: `none`,
-    //           textDecoration: `none`,
-    //           color: `inherit`,
-    //         }}
-    //         to={location.pathname === blogPath ? `/blog/` : `/`}
-    //       >
-    //         {title}
-    //       </Link>
-    //     </h1>
-    //   )
-    // } else {
-    //   header = (
-    //     <h3
-    //       style={{
-    //         fontFamily: `Montserrat, sans-serif`,
-    //         marginTop: 0,
-    //       }}
-    //     >
-    //       <Link
-    //         style={{
-    //           boxShadow: `none`,
-    //           textDecoration: `none`,
-    //           color: `inherit`,
-    //         }}
-    //         to={`/blog/`}
-    //       >
-    //         {title}
-    //       </Link>
-    //     </h3>
-    //   )
-    // }
     return (
-      <main>
-        {children}
-      </main>
+      <>
+      <GlobalStyle />
+      <Wrapper>
+        <Header />
+        <main>
+          {children}
+        </main>
+      </Wrapper>
+      </>
     )
   }
 }
 
-// const Wrapper = styled.div`
-//   min-height: 100vh;
-// `
+const Wrapper = styled.div`
+  min-height: 100vh;
+`
 
 // const Footer = styled.footer`
 //   text-align: center;

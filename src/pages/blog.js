@@ -1,7 +1,8 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
+// import Bio from "../components/bio"
+import BlogListing from "../components/blogListing"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Button from "../components/button"
@@ -15,34 +16,23 @@ class Blog extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="All posts" />
-        <Bio />
-        <div style={{ margin: "20px 0 40px" }}>
-          {posts.map(({ node }) => {
-            const title = node.frontmatter.title || node.fields.slug
-            const thumbnail = node.frontmatter.header_image
-            return (
-              <div key={node.fields.slug}>
-                <h3>
-                  <Link
-                    style={{ boxShadow: `none` }}
-                    to={`blog${node.fields.slug}`}
-                  >
-                    {title}
-                  </Link>
-                </h3>
-                <img src={thumbnail} alt={node.frontmatter.alt}/>
-                <small>{node.frontmatter.date}</small>
-                <small>{node.frontmatter.subject}</small>
-                <small>{node.timeToRead} Min Read</small>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
-                  }}
-                />
-              </div>
+          {posts.map(({ node }) => (
+                  // <Link to={`blog${node.fields.slug}`}>
+                    <BlogListing
+                      key = {node.fields.slug} 
+                      slug = {node.fields.slug}
+                      header_image={node.frontmatter.header_image}
+                      img_alt = {node.frontmatter.alt}
+                      title = {node.frontmatter.title}
+                      subject = {node.frontmatter.subject}
+                      timeToRead = {node.timeToRead}
+                      date = {node.frontmatter.date}
+                      excerpt = {node.frontmatter.description || 
+                        node.excerpt}
+                    />
+                  // </Link>
             )
-          })}
-        </div>
+          )}
         <Link to="/">
           <Button marginTop="85px">Go Home</Button>
         </Link>

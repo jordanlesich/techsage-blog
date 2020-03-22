@@ -17,4 +17,5 @@ collections:
       - { name: subject, label: Subject, widget: select, options: ["Sagacity", "Creations", "Code", "Wellness", "Profiles", "Personal"]}
       - { name: header-image, label: Top Image, widget: image}
       - { name: alt, label: Alt Text for Image, widget: text}
+      - { name: description, label: <title> text for SEO purposes}
       - { name: body, label: Body, widget: markdown }
