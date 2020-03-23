@@ -1,5 +1,6 @@
 import React from "react"
 import Header from './header'
+import Helmet from "react-helmet"
 // import { Link } from "gatsby"
 import styled, {createGlobalStyle} from "styled-components"
 
@@ -9,12 +10,16 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Roboto', sans-serif, -apple-system,  BlinkMacSystemFont, 'Segoe UI',  Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
     color: #262626;
+    text-rendering: optimizeLegibility;
   }
-  a {
+  a, 
+  a:visited{
     text-decoration: none;
   }
+  
 `
 
 
@@ -26,14 +31,18 @@ class Layout extends React.Component {
     // const blogPath = `${__PATH_PREFIX__}/blog/`
 
     return (
+      
       <>
-      <GlobalStyle />
-      <Wrapper>
-        <Header />
-        <main>
-          {children}
-        </main>
-      </Wrapper>
+        <Helmet>
+              <link href="https://fonts.googleapis.com/css?family=Roboto:300,500,700&display=swap" rel="stylesheet" />
+        </Helmet>
+        <GlobalStyle />
+        <Wrapper>
+          <Header />
+          <main>
+            {children}
+          </main>
+        </Wrapper>
       </>
     )
   }
