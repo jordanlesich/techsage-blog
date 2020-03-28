@@ -5,6 +5,91 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+import styled from 'styled-components'
+
+const BlogPostWrapper = styled.main `
+  width: 1000px;
+
+  .hero {
+    margin-top: 6rem;
+    border-bottom: 1px #292929 solid;
+    margin-bottom: 4rem;
+    h1 {
+      font-size: 3.8rem;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      margin-bottom: 2rem;
+    }
+    .sub-text{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .sample-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: purple;
+    }
+  .article-info{
+    margin-left: 1rem;
+    
+  }
+  .author-info {
+    font-size:1.3rem;
+    font-weight: 700;
+  }
+  .date{
+    font-weight: 300;
+  }
+    
+  }
+
+  .main-body{
+    width: 80%;
+    margin-left: 5rem;
+
+    .title-image{
+    width: 45%;
+    float: right;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+  }
+   h1 {
+     font-size: 3.5rem;
+     font-weight: 600;
+     margin: 3.2rem 0rem;
+    
+   }
+   h2 {
+     font-size: 3rem;
+     font-weight: 600;
+     margin: 3rem 0rem;
+   }
+   h3 {
+     font-size: 2.2rem;
+     font-weight: 600;
+     margin: 2.6rem 0rem;
+   }
+   h4 {
+     font-size: 1.8rem;
+     font-weight: 600;
+     margin: 2.2rem 0rem;
+   }
+
+   p{
+     line-height: 1.5;
+     font-size: 1.4rem;
+     margin: 2rem 0rem;
+   }
+  }
+  
+  
+  
+ 
+`
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.mdx
@@ -12,26 +97,36 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
     const blogSVG = post.frontmatter.header_image
 
-    console.log(post)
-
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <img src={blogSVG} alt={post.frontmatter.alt || post.frontmatter.title} />
-        <h1>{post.frontmatter.title}</h1>
-        <p>
-          {post.frontmatter.date}
-        </p>
-        <p>
-          {post.timeToRead} Minute Read
-        </p>
-        <p>
-          {post.frontmatter.subject} 
-        </p>
-        <MDXRenderer>{post.body}</MDXRenderer>
+        <BlogPostWrapper>
+          <div className='hero'>
+            <h1>{post.frontmatter.title}</h1>
+            <div className="sub-text">
+              <div className="sample-avatar"/>
+              <div className="article-info">
+                <p className="author-info">
+                  By Jordan Lesich
+                </p>
+                <p className="date">
+                  {post.frontmatter.date}
+                </p>
+              </div>
+              </div>
+          </div>
+        <div className="main-body">
+          <img 
+          src={blogSVG} 
+          className="title-image" 
+          alt={post.frontmatter.alt || post.frontmatter.title} />
+          <MDXRenderer>{post.body}</MDXRenderer>
+        </div>
+
+
         <hr/>
         <Bio />
 
@@ -51,6 +146,7 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
+        </BlogPostWrapper>
       </Layout>
     )
   }

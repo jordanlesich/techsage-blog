@@ -8,19 +8,29 @@ const blogListing = props => {
     const thumbnail = props.header_image
     const blogSlug = `/blog/${props.slug}`
 
+
     return(
-    <StyleWrapper>
-            <hr/>
+    <>
+    <StyleWrapper props={props}>
+            <hr/>    
             <img src={thumbnail} alt={props.img_alt}/>
-            <div className="mainInfo">
-                <h2> {props.title} </h2>
-                <p className="timeToRead"> {props.timeToRead} Min Read <span className="date"> -- {props.date}</span></p>
-                
+            <div className="main-info">
+                <h2><Link to={blogSlug}> {props.title}</Link> </h2>
+                <p className="info-text">    
+                {props.timeToRead} Min Read 
+                <span className="date"> -- {props.date}</span>
+                </p>
                 <p className="excerpt" dangerouslySetInnerHTML={{ __html: props.excerpt}}/> 
-                <Link to={blogSlug}><button className="readMore">Read More</button></Link>
+                <Link to={blogSlug}>
+                    {props.index===0? 
+                    <button className="btn-primary">START READING</button>
+                    :
+                    <button className="btn-secondary">Read More</button>
+                    }
+                </Link>
             </div>   
-            <p className="subject">{props.subject}</p>
     </StyleWrapper>
+    </>
     )
 }
 
@@ -28,68 +38,97 @@ export default blogListing
 
 
 const StyleWrapper = styled.article `
-    max-width: 1000px;
-    margin: 0 0 4rem 4rem;
+
     display: grid;
-    grid-template-columns: 2fr 5fr 1fr;
+    grid-template-columns: ${props => props.props.index === 0 ? '7fr 3fr': '6fr 1fr'};
+    width: ${props => props.props.index === 0 ? "1100px" : "800px" };
+    margin-bottom: ${props => props.props.index === 0 ? '4rem': '0'} ;
+    padding: ${props => props.props.index === 0? '3rem' : '2rem 3rem 3rem 3rem'} ;
+    background-color: ${props => props.props.index === 0 ? '#eff4f9' : '#ffffff'};
+    border-radius: 3px;
+    /* border-top: 1px #262626 solid; */
     
     hr {
-        border-top: 1px #262626 solid;
-        grid-column: 1/4;
-        margin-bottom: 2rem;
+        /* border: none; */
+        /* border-bottom: 1px #262626 solid; */
+        width: 100%;
+        /* height: 0%; */
+        grid-column: 1/3;
+        grid-row: 2;
+        transform: ${props => props.props.index === 0 ? 'translateY(6rem)' : 'translateY(3rem)'};
+        /* margin-bottom: 2rem; */
+        /* display: ${props => props.props.index === 0 ? 'none': 'block'}; */
     }
     img {
-        grid-column: 1;
-        width: 100%;
-    }
-    h2 {
+        height: ${props => props.props.index === 0? '550px;' : '260px'};
         grid-column: 2;
-        font-size: 3rem;
-        margin-top: -0.5rem;
-        margin-bottom: 1rem;
-        line-height: 3.5rem;
+        grid-row: 1;
+        border-radius: 3px;
     }
-    .mainInfo {
-        grid-column: 2;
-        margin: 0 3rem 0 3rem;
-    }
-    .subject {
-        grid-column: 3;
-        justify-self: end;
-        align-self: flex-start;
-        color: #FF6B00;
-        font-size: 1.1rem;
-        
-    }
-    .subject:hover {
-        text-decoration: underline;
-        cursor: pointer;
+
     
+
+    h2 {
+        grid-column: 1;
+        font-size: ${props => props.props.index === 0 ?'4rem' : '2.5rem'};
+        margin-top: -0.2rem;
+        /* margin-right: 3rem; */
+        margin-bottom: ${props => props.props.index === 0 ? "2rem" : "1rem"};
+        line-height: 1.1;
+        letter-spacing: -2px;
+        color: #262626;
+
+        a:visited {
+            color: #262626;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
     }
-    .timeToRead {
+
+    .main-info {
+        grid-column: 1;
+        grid-row: 1;
+        /* margin: 0 2rem; */
+    }
+    
+    .info-text {
         font-size: 1.1rem;
-        margin-bottom: 2rem;
+        margin-bottom: ${props => props.props.index === 0 ? "3rem" : "2rem"};
     }
     .date {
         font-size: 0.9em;
     }
     .excerpt {
-        font-size: 1.3rem;
+        font-size: ${props => props.props.index === 0 ? "1.5rem" : "1.2rem"};
         width: 80%;
-        margin-bottom: 2rem;
+        font-weight: 500;
+        margin-bottom: ${props => props.props.index === 0 ? '3rem': '2rem'};
     }
-    .readMore {
-        display: block;
+
+    .btn-secondary,
+    .btn-primary {
+        border-radius: 6px;
+        font-weight: 700;
+        text-align: center;
+        cursor: pointer;
+    }
+    .btn-secondary {
         font-size: 1.3rem;
         background-color: #FFFFFF;
         color: #FF6B00;
         border: 2px #FF6B00 solid;
         letter-spacing: -.2px;
-        border-radius: 6px;
-        font-weight: 600;
-        text-align: center;
         padding: 10px 25px;
-        cursor: pointer;
+    }
+
+    .btn-primary {
+        font-size: 1.5rem;
+        background-color: #FF6B00 ;
+        color: #FFFFFF;
+        border: 2px #FF6B00 solid;
+        letter-spacing: -.2px;
+        padding: 15px 25px;
     }
 
 

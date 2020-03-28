@@ -75,6 +75,12 @@ module.exports = {
         // trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
+      {
+          resolve: 'gatsby-plugin-mailchimp',
+          options: {
+              endpoint: "https://dev.us19.list-manage.com/subscribe/post?u=b2cac6483630d316bc047f09c&amp;id=175728803a",
+          },
+      },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -88,6 +94,10 @@ module.exports = {
         icon: `content/assets/gatsby-icon.png`,
       },
     },
+    
+
+
+
     // {
     //   resolve: `gatsby-plugin-typography`,
     //   options: {

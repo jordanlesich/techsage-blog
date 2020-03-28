@@ -1,5 +1,6 @@
 import React from "react"
 import Header from './header'
+import Footer from './footer'
 import Helmet from "react-helmet"
 // import { Link } from "gatsby"
 import styled, {createGlobalStyle} from "styled-components"
@@ -34,14 +35,15 @@ class Layout extends React.Component {
       
       <>
         <Helmet>
-              <link href="https://fonts.googleapis.com/css?family=Roboto:300,500,700&display=swap" rel="stylesheet" />
+              <link href="https://fonts.googleapis.com/css?family=Roboto:300,400, 500,700&display=swap" rel="stylesheet" />
         </Helmet>
         <GlobalStyle />
         <Wrapper>
-          <Header />
-          <main>
+          <Header location={this.props.location}/>
+          <main style={{ display: 'flex',  flexDirection: 'column', alignItems: 'center', fontSize: 'inherit',}}>
             {children}
           </main>
+          <Footer />
         </Wrapper>
       </>
     )
@@ -51,10 +53,5 @@ class Layout extends React.Component {
 const Wrapper = styled.div`
   min-height: 100vh;
 `
-
-// const Footer = styled.footer`
-//   text-align: center;
-//   margin: 24px;
-// `
 
 export default Layout
