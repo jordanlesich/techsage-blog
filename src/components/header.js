@@ -7,7 +7,7 @@ import SubscribeNav from './subscribeNav'
 
 const HeaderContainer = styled.header `
 
-    max-width: 1200px;
+    /* max-width: 1100px; */
     margin: 0 auto;
     position: relative;
     
@@ -102,9 +102,7 @@ ul li ul {
             }
         }
     
-    .subscribe {
-         position: relative;
-        transform: translate(-0.2rem, 0.6rem);
+    
         
         .subscribe-button {
             color: #ff6b00;
@@ -118,9 +116,7 @@ ul li ul {
             align-items: center;
             cursor: pointer;
         }
-    }
     
-
 `
 
 
@@ -156,7 +152,7 @@ const Header = props => {
                 </ul> */}
             <div className="subscribe" >
                 <button onClick={toggleSubscribeForm} className='subscribe-button'> Subscribe</button>
-                {subscribeFormOpen && <SubscribeNav location={props.location}/>}
+                {subscribeFormOpen && <SubscribeNav location={props.location} toggleSubscribeForm={toggleSubscribeForm} />}
             </div>
             </nav>
         </HeaderContainer>

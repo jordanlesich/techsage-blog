@@ -28,6 +28,7 @@ const blogListing = props => {
                     <button className="btn-secondary">Read More</button>
                     }
                 </Link>
+                <button> {props.subject}</button>
             </div>   
     </StyleWrapper>
     </>
@@ -41,9 +42,9 @@ const StyleWrapper = styled.article `
 
     display: grid;
     grid-template-columns: ${props => props.props.index === 0 ? '7fr 3fr': '6fr 1fr'};
-    width: ${props => props.props.index === 0 ? "1100px" : "800px" };
+    max-width: ${props => props.props.index === 0 ? "100%" : "800px" };
     margin-bottom: ${props => props.props.index === 0 ? '4rem': '0'} ;
-    padding: ${props => props.props.index === 0? '3rem' : '2rem 3rem 3rem 3rem'} ;
+    padding: ${props => props.props.index === 0? '3rem' : '1rem 3rem 2rem 3rem'} ;
     background-color: ${props => props.props.index === 0 ? '#eff4f9' : '#ffffff'};
     border-radius: 3px;
     /* border-top: 1px #262626 solid; */
@@ -51,11 +52,12 @@ const StyleWrapper = styled.article `
     hr {
         /* border: none; */
         /* border-bottom: 1px #262626 solid; */
-        width: 100%;
+        width: 110%;
+        margin-left: -3rem;
         /* height: 0%; */
         grid-column: 1/3;
         grid-row: 2;
-        transform: ${props => props.props.index === 0 ? 'translateY(6rem)' : 'translateY(3rem)'};
+        transform: ${props => props.props.index === 0 ? 'translateY(6rem)' : 'translateY(2rem)'};
         /* margin-bottom: 2rem; */
         /* display: ${props => props.props.index === 0 ? 'none': 'block'}; */
     }
@@ -108,7 +110,7 @@ const StyleWrapper = styled.article `
 
     .btn-secondary,
     .btn-primary {
-        border-radius: 6px;
+        border-radius: 3px;
         font-weight: 700;
         text-align: center;
         cursor: pointer;

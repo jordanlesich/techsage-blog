@@ -1,54 +1,49 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React, {useState} from "react"
+import {graphql } from "gatsby"
 import BlogListing from "../components/blogListing"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Button from "../components/button"
 import styled from 'styled-components'
+import TopicSelector from "../components/topicSelector"
 
 
 const BlogWrapper = styled.div `
 
-  width: 1200px;
   position: relative;
-
-  .subject-select {
-
-  }
+  grid-column: 2;
 
   ul {
     list-style: none;
   }
     
-
   .top-article-text {
     margin: 2rem 0 2rem 0;
     font-size: 1.4rem;
     opacity: .5;
   }
 
-  
-`
-
-
-class Blog extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      isFiltering: false,
-      subjectName: ''
-    }
-    this.mapListings = this.mapListings.bind(this)
-    this.filterListings= this.filterListings.bind(this)
-
-    this.handleChange = this.handleChange.bind(this)
+  .no-posts-card{
+    height: 500px;
+    font-size: 3rem;
+    margin: 0 auto;
   }
 
-  mapListings(posts){
-   return <ul>
+  
+`
+const Blog = props => {
+
+    const startingSubject = props.location.hasOwnProperty('state.subjectName')? 
+    props.location.state.subjectName 
+    : 
+    'All';
+
+    const [subjectName, setSubjectName] = useState(startingSubject)
+
+
+    const mapListings = (posts) => {
+    return <ul>
             {posts.map(({ node }, index) => (
             <li key= {`list.${index}`}>
-        
               <BlogListing
                 key = {node.fields.slug} 
                 slug = {node.fields.slug}
@@ -61,7 +56,7 @@ class Blog extends React.Component {
                 excerpt = {node.frontmatter.description || 
                   node.excerpt}
                 index={index}
-                changeSubject={this.changeSubject}
+                changeSubject={changeSubject}
               />
             </li>
             ))
@@ -69,73 +64,63 @@ class Blog extends React.Component {
           </ul>
   }
 
-  filterListings(){
-    const posts = this.props.data.allMdx.edges
-    const filteredPosts = posts.filter(({node}) => node.frontmatter.subject === this.state.subjectName)
+  const filterListings = () => {
+    const posts = props.data.allMdx.edges
+    const filteredPosts = posts.filter(({node}) => node.frontmatter.subject === subjectName)
     if(filteredPosts.length>0){
-      return this.mapListings(filteredPosts)
+      return mapListings(filteredPosts)
     }
     else{
-      return <h2>No Posts Available</h2>
-    }
-  }
-  handleChange(e){
-    if(e.target.value === "All"){
-      this.setState({
-        isFiltering : false,
-        subjectName: ""
-      })
-    }
-    else {
-      this.setState({
-        isFiltering : true,
-        subjectName: e.target.value
-      })
+      return <h2 className="no-posts-card">No Posts Available</h2>
     }
   }
 
-  render() {
-    const { data } = this.props
+  
+  const changeSubject = (value) => {
+      setSubjectName(value)
+  }
+
+
+    const { data } = props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMdx.edges
 
-  
+    
+    const topicDescriptionText = () => {
+      switch(subjectName){
+      case 'All':
+      return 'All Topics'
+      case 'WebDev':
+      return 'Web Development'
+      case 'Sagacity':
+      return 'Stoicism'  
+      case 'Projects':
+      return `Coding Projects`
+      case 'SageLife':
+      return 'Living like a Sage'
+      }
+    }
+
+   
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={props.location} title={siteTitle}>
         <SEO title="All posts" />
           <BlogWrapper>
-          {/* <div
-          className="subject-select" 
-          // style={{position: "absolute", left: '4rem', marginTop: "2rem"}}
-          >
-            <label htmlFor="subject-select">Current Subject: </label>
-            <select 
-            name="subjects" 
-            id="subject-select" 
-            onChange={this.handleChange}
-            >
-              <option value="All"> All </option>
-              <option value="Sagacity"> Sagacity </option>
-              <option value="Machina"> Machina </option>
-              <option value="InDepth"> InDepth </option>
-              <option value="SageLife"> SageLife </option>
-            </select>  
-          </div> */}
+          <TopicSelector location={props.location} changeSubject={changeSubject}/>
           <p className='top-article-text'>Featured Article:</p>
+          <p>{topicDescriptionText()}</p>
           {
-          this.state.isFiltering? 
-          this.filterListings()
+          subjectName !== 'All'? 
+          filterListings()
           :
-          this.mapListings(posts)
+          mapListings(posts)
           }
-        <Link to="/">
-          <Button marginTop="85px">Go Home</Button>
-        </Link>
+        
         </BlogWrapper>
       </Layout>
     )
   }
-}
+
 
 export default Blog
 

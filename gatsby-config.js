@@ -1,14 +1,21 @@
+
 module.exports = {
+  
+  pathPrefix: '/blog/',
+  
+
   siteMetadata: {
     // edit below
-    title: `techSage`,
+    title: `sageMachina`,
     author: `Jordan Lesich`,
-    description: `Sage Words for all things web, tech, development, soft skills, self-mastery, and philosophy`,
-    siteUrl: `https://techsage.dev/`,
+    description: `Sage Words for all things web development, tech, self-mastery, and philosophy`,
+    siteUrl: `https://sagemachina.com/`,
     social: {
       twitter: `jordanlesich`,
     },
   },
+
+
   plugins: [
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-styled-components`,
@@ -48,14 +55,6 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          // {
-          //   resolve: "gatsby-plugin-react-svg",
-          //   options: {
-          //     rule: {
-          //       include: "/content/assets"
-          //     },
-          //   }
-          // },
           {
             resolve: `gatsby-remark-vscode`,
           },
@@ -84,9 +83,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
-        start_url: `/`,
+        name: `sageMachina Blog`,
+        short_name: `sageMachina`,
+        start_url: `/blog/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
@@ -95,14 +94,5 @@ module.exports = {
       },
     },
     
-
-
-
-    // {
-    //   resolve: `gatsby-plugin-typography`,
-    //   options: {
-    //     pathToConfigModule: `src/utils/typography`,
-    //   },
-    // },
   ],
 }

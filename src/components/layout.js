@@ -2,10 +2,12 @@ import React from "react"
 import Header from './header'
 import Footer from './footer'
 import Helmet from "react-helmet"
-// import { Link } from "gatsby"
 import styled, {createGlobalStyle} from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
+
+  min-height: 100vh;
+
   * {
     margin: 0;
     padding: 0;
@@ -16,20 +18,28 @@ const GlobalStyle = createGlobalStyle`
     color: #262626;
     text-rendering: optimizeLegibility;
   }
-  a, 
-  a:visited{
+  a, a:visited{
+    font-family: 'Roboto', sans-serif, -apple-system,  BlinkMacSystemFont, 'Segoe UI',  Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #262626;
     text-decoration: none;
+    text-rendering: optimizeLegibility;
   }
   
 `
 
+const MainLayout = styled.main`
 
-class Layout extends React.Component {
-  render() {
-    // const {location, title} = this.props;
-    const {children} = this.props
-    // const rootPath = `${__PATH_PREFIX__}/`
-    // const blogPath = `${__PATH_PREFIX__}/blog/`
+display: grid;
+grid-template-columns: auto 1000px auto;
+
+
+
+`
+
+
+const Layout = props => {
+   
+    const {children, location} = props
 
     return (
       
@@ -38,20 +48,16 @@ class Layout extends React.Component {
               <link href="https://fonts.googleapis.com/css?family=Roboto:300,400, 500,700&display=swap" rel="stylesheet" />
         </Helmet>
         <GlobalStyle />
-        <Wrapper>
-          <Header location={this.props.location}/>
-          <main style={{ display: 'flex',  flexDirection: 'column', alignItems: 'center', fontSize: 'inherit',}}>
+          <Header location={location}/>
+          <MainLayout>
             {children}
-          </main>
-          <Footer />
-        </Wrapper>
+          </MainLayout>
+          <Footer  location={location}/>
+        
       </>
     )
-  }
+  
 }
 
-const Wrapper = styled.div`
-  min-height: 100vh;
-`
 
 export default Layout

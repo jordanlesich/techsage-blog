@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
@@ -70,6 +70,21 @@ const FormWrapper = styled.div`
             font-weight: 600;
             letter-spacing: -2.2px;
         }
+        .form-feedback-text{
+            color: black;
+            padding: .5rem 1rem;
+            font-size: 1.1rem;
+            margin:  0 1.5rem;
+            font-weight: 400;
+            border-radius: 6px;
+            width: 70%;
+        }
+        .error{
+            background-color: #ffa5a5;
+        }
+        .success{
+            background-color: #d5ffd5;
+        }
     }
 `
 
@@ -84,8 +99,7 @@ const SubscribeNav = (props) => {
 
     const { handleSubmit, register, errors } = useForm();
     
-    // const [userData, setUserData] = useState({});
-    // console.log(userData)
+    const [userData, setUserData] = useState({});
     
 
     const onSubmit = values => {
@@ -95,16 +109,16 @@ const SubscribeNav = (props) => {
             FNAME: values.fName,
             LNAME: values.lName,
         })
-        // .then(data => {
-        //   setUserData({...values, pathname: props.location.pathname, ...data})
-        // })
+        .then(data => {
+          setUserData({...values, pathname: props.location.pathname, ...data})
+        })
   };
 
   return (
     <FormWrapper>
     
     <form onSubmit={handleSubmit(onSubmit)}>
-    <p className='form-title'>Subscribe to <span className='form-title-logo'>sageMachina</span> </p>
+    <p className='form-title'> Join the Newsletter </p>
       <label htmlFor='emailInput'>Please Enter Your Email:</label>
       <input
         id='emailInput'
@@ -112,33 +126,47 @@ const SubscribeNav = (props) => {
         ref={register({
           required: 'Required',
           pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+            value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             message: "Please enter a valid email address"
           }
         })}
-      />
+        />
+        {errors.email && <p className='form-feedback-text error'>{errors.email.message}</p>}
       <label htmlFor='fNameInput'>First Name:</label>  
       <input
         id='fNameInput'
         name="fName"
         ref={register({
-          required: "Please enter your first name:",  
-          validate: value => value !== "admin" || "Nice try!"
+            required: "Please enter your first name:",  
+            pattern: {
+                value: /^[a-z ,.'-]+$/i,
+                message: "Please enter a valid first name"
+            }
+            
         })}
-      />
-      
+        />
+        {errors.fName && <p className='form-feedback-text error'>{errors.fName.message}</p>}
       <label htmlFor="lNameInput">Last Name:</label>  
       <input
         id='lNameInput'
         name="lName"
         ref={register({
           required: "Please enter your last name",
-          validate: value => value !== "admin" || "Nice try!"
+          pattern: {
+                value: /^[a-z ,.'-]+$/i,
+                message: "Please enter a valid first name"
+            }
         })}
       />
-      {errors.fName && errors.fName.message}
-      {errors.lName && errors.lName.message}
-      {errors.email && errors.email.message}
+      {errors.lName && <p className='form-feedback-text error'>{errors.lName.message}</p>}
+      {userData.result && <p 
+      className={`form-feedback-text ${userData.result==='success'? 
+      'success' 
+      : 
+      'error'}`}>
+           {userData.result === 'success' ? userData.msg : `Error. Contact for help`} 
+       </p>
+        }
       <button type="submit">Submit</button>
     </form>
     </FormWrapper>

@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import {Link} from 'gatsby'
+import {Link, useStaticQuery} from 'gatsby'
+import Image from 'gatsby-image'
 import SubscribeFooter from '../components/subscribeFoot'
+
 
 const FooterContainer = styled.footer `
 
@@ -40,6 +42,14 @@ const FooterContainer = styled.footer `
         font-weight: 600;
         letter-spacing: -4px;
         margin-bottom: 2rem;
+    }
+    .about-text{
+        color: #f0f0f0;
+        width: 300px;
+        font-size: 1.3rem;
+        p{
+        margin: 1rem 0;
+        }
     }
     .nav-links{
         display: flex;
@@ -80,12 +90,56 @@ const FooterContainer = styled.footer `
 `
 
 
-const Footer = () => {
+const Footer = props => {
+
+    const data = useStaticQuery(graphql`
+    query imgQuery {
+      avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+        childImageSharp {
+          fixed(width: 100, height: 100) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+    `)
+    
+
+
+    console.log(data)
+
+
     return(
         <FooterContainer>
             <div className="inner-container">
             <nav>
                 <Link className="logo" to='/blog'>sageMachina</Link>
+                <div className="about-text">
+                    {props.location.pathname === '/blog/' ? 
+                    <>
+                    <p>sageMachina is a blog about coding, tech, wellness, and stoic philosophy.</p>
+                    <Image
+                        fixed={data.avatar.childImageSharp.fixed}
+                        alt='Jordan Lesich'
+                        imgStyle={{
+                        borderRadius: `50%`,
+                        }}
+                    />
+                    <p>It is written by Jordan Lesich, a web developer living in Toronto</p>
+                    </>
+                    :
+                    <>
+                    <Image
+                        fixed={data.avatar.childImageSharp.fixed}
+                        alt={'Jordan Lesich'}
+                        imgStyle={{
+                        borderRadius: `50%`,
+                        }}
+                    />
+                    <p>This article was written by Jordan Lesich, a web developer living in Toronto.</p>
+                    </>
+                    }   
+                </div>
                 {/* <div className="nav-links">
                 <div className="nav-main-links">
                     <Link>About</Link>
@@ -109,7 +163,7 @@ const Footer = () => {
                 </div> */}
             </nav>
             </div>
-            <SubscribeFooter />
+            <SubscribeFooter location={props.location}/>
         </FooterContainer>
         
     )

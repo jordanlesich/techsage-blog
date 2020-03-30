@@ -1,9 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import TopicSelector from '../components/topicSelector'
 
 import styled from 'styled-components'
 
@@ -90,20 +90,21 @@ const BlogPostWrapper = styled.main `
  
 `
 
-class BlogPostTemplate extends React.Component {
-  render() {
-    const post = this.props.data.mdx
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+const BlogPostTemplate = props => {
+  
+    const post = props.data.mdx
+    const siteTitle = props.data.site.siteMetadata.title
+    const { previous, next } = props.pageContext
     const blogSVG = post.frontmatter.header_image
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={props.location} title={siteTitle}>
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <BlogPostWrapper>
+        <TopicSelector location={props.location} />
+        <BlogPostWrapper >
           <div className='hero'>
             <h1>{post.frontmatter.title}</h1>
             <div className="sub-text">
@@ -114,6 +115,11 @@ class BlogPostTemplate extends React.Component {
                 </p>
                 <p className="date">
                   {post.frontmatter.date}
+                </p>
+                <p className="subject">
+                  In <Link to={'/blog'} state={{subjectName: post.frontmatter.subject}}>
+                    {post.frontmatter.subject}
+                    </Link>
                 </p>
               </div>
               </div>
@@ -128,7 +134,7 @@ class BlogPostTemplate extends React.Component {
 
 
         <hr/>
-        <Bio />
+        
 
         <ul>
           <li>
@@ -150,7 +156,6 @@ class BlogPostTemplate extends React.Component {
       </Layout>
     )
   }
-}
 
 export default BlogPostTemplate
 
