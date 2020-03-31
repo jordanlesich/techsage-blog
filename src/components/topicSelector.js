@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, navigate} from 'gatsby';
+import {navigate} from 'gatsby';
 import styled from 'styled-components'
 import upArrow from '../utils/up.svg'
 
@@ -42,12 +42,12 @@ const topicSelector = props => {
 
         console.log(props.location)
 
-        if (props.location.pathname === '/blog/')
+        if (props.location.pathname === '/')
         {
             props.changeSubject(e.target.value);
         }
         else {
-            navigate('/blog/', {state: {subjectName: e.target.value}})
+            navigate('/', {state: {subjectName: e.target.value}})
         }
     }
 

@@ -1,8 +1,6 @@
 
 module.exports = {
   
-  // pathPrefix: '/blog/',
-  
 
   siteMetadata: {
     // edit below
@@ -21,9 +19,9 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-feed-mdx`,
+    'gatsby-plugin-sitemap',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -85,14 +83,15 @@ module.exports = {
       options: {
         name: `sageMachina Blog`,
         short_name: `sageMachina`,
-        start_url: `/blog/`,
+        start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#262626`,
         display: `minimal-ui`,
         // edit below
         icon: `content/assets/gatsby-icon.png`,
       },
     },
+    `gatsby-plugin-offline`,
     
   ],
 }

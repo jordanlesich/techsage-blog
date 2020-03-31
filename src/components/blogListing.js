@@ -9,9 +9,15 @@ const blogListing = props => {
     const blogSlug = `/blog/${props.slug}`
 
 
+    const handleClick = e => {
+        props.changeSubject(props.subject)
+    }
+
     return(
     <>
+    <Link to={blogSlug}>
     <StyleWrapper props={props}>
+            
             <hr/>    
             <img src={thumbnail} alt={props.img_alt}/>
             <div className="main-info">
@@ -28,9 +34,11 @@ const blogListing = props => {
                     <button className="btn-secondary">Read More</button>
                     }
                 </Link>
-                <button> {props.subject}</button>
             </div>   
     </StyleWrapper>
+    </Link>
+                <button onClick={handleClick}> {props.subject}</button>
+
     </>
     )
 }

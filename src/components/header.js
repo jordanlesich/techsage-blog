@@ -127,9 +127,9 @@ const Header = props => {
     return(
         <HeaderContainer>
             <nav>
-                <Link className="logo" to='/blog'>sageMachina</Link>
+                <Link className="logo" to='/'>sageMachina</Link>
                 {/* <ul className="link-container">
-                    <li><Link to='/blog'>blog</Link>
+                    <li><Link to='/'>blog</Link>
                         <ul className="dropdown">
                             <li><Link>sagacity</Link></li>
                             <li><Link>machina</Link></li>

@@ -14,7 +14,7 @@ const NotFoundPage = props => {
         <SEO title="404: Not Found" />
         <h1>Not Found</h1>
         <p>This path doesn't exist.</p>
-        <p style={{margin: '10rem 0'}}><Link to='/blog'>This Link</Link> will bring you back to the blog</p>
+        <p style={{margin: '10rem 0'}}><Link to='/'>This Link</Link> will bring you back to the blog</p>
       </Layout>
     )
   

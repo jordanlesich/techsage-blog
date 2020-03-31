@@ -117,7 +117,7 @@ const BlogPostTemplate = props => {
                   {post.frontmatter.date}
                 </p>
                 <p className="subject">
-                  In <Link to={'/blog'} state={{subjectName: post.frontmatter.subject}}>
+                  In <Link to={'/'} state={{subjectName: post.frontmatter.subject}}>
                     {post.frontmatter.subject}
                     </Link>
                 </p>

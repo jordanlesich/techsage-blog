@@ -113,9 +113,9 @@ const Footer = props => {
         <FooterContainer>
             <div className="inner-container">
             <nav>
-                <Link className="logo" to='/blog'>sageMachina</Link>
+                <Link className="logo" to='/'>sageMachina</Link>
                 <div className="about-text">
-                    {props.location.pathname === '/blog/' ? 
+                    {props.location.pathname === '/' ? 
                     <>
                     <p>sageMachina is a blog about coding, tech, wellness, and stoic philosophy.</p>
                     <Image

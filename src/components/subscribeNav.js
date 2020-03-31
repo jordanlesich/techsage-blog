@@ -9,7 +9,6 @@ const FormWrapper = styled.div`
     justify-content: center;
     width: 400px;
     position: absolute;
-    /* right:100%; */
     transform: translateX(-100%);
     background-color: #40465f;
     z-index: 5;
@@ -104,7 +103,6 @@ const SubscribeNav = (props) => {
     const { handleSubmit, register, errors } = useForm();
     
     const [userData, setUserData] = useState({});
-    console.log(userData)
 
     const handleClick = (e) => {
         props.toggleSubscribeForm()
@@ -133,7 +131,7 @@ const SubscribeNav = (props) => {
         ref={register({
           required: 'Required',
           pattern: {
-            value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            value: /\S+@\S+\.\S+/,
             message: "Please enter a valid email address"
           }
         })}
