@@ -1,7 +1,7 @@
 
 module.exports = {
   
-  pathPrefix: '/blog/',
+  // pathPrefix: '/blog/',
   
 
   siteMetadata: {
