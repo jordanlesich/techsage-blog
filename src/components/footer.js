@@ -1,89 +1,104 @@
 import React from 'react'
+import useToggle from '../hooks/useToggle'
 import styled from 'styled-components'
-import {Link, useStaticQuery} from 'gatsby'
+import {useStaticQuery} from 'gatsby'
 import Image from 'gatsby-image'
-import SubscribeFooter from '../components/subscribeFoot'
-
+import SubscribeForm from './subscribeForm'
+import ContactForm from './contactForm'
 
 const FooterContainer = styled.footer `
 
-    background-color: #262626;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 400px;
+    width: 1000px;
+    margin: 0 auto 0 auto;
     position: relative;
 
-    .inner-container {
-        justify-self: center;
-        width: 90%;
-    }
+    .request-button{
+        display: block;
+        background: transparent;
+        color: #ff6b00;
+        text-align: center;
+        padding: 1rem 2rem;
+        margin: 4rem auto;
+        border: 1px transparent solid;
+        border-top: 1px #ff6b00 solid;
+        border-left: 1px #ff6b00 solid;
+        cursor: pointer;
+        font-size: 1.6rem;
+        /* font-weight: 6400; */
+        letter-spacing: -1.5px;
+        transition: all .2s;
 
-    nav {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 2.5rem 0;
-    }
-
-    a {
-        color: #f0f0f0;
-        font-size: 1.4rem;
-    }
-    a:hover {
-        color: #ffffff;
-        /* text-decoration: underline; */
-    }
-    a:visited {
-        color: #f0f0f0;
-    }
-
-    .logo {
-        font-size: 3.5rem;
-        font-weight: 600;
-        letter-spacing: -4px;
-        margin-bottom: 2rem;
-    }
-    .about-text{
-        color: #f0f0f0;
-        width: 300px;
-        font-size: 1.3rem;
-        p{
-        margin: 1rem 0;
+        :hover, :focus{
+        border: 1px #ff6b00 solid;
+        box-shadow: 1px 2px 3px 2px rgba(0,0,0,.15)
         }
     }
-    .nav-links{
+        
+
+    .about-section{
+        color: #262626;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .about-blog, .about-me{
+        width: 100%;
+        border-top: 1px rgba(0,0,0,.4) solid;
+        margin-top: 2rem;
+        font-size: 1rem;
+        opacity: .9;
+        p{
+            margin: 0 1rem 2rem 3rem;
+        }
+    }
+    .about-blog{
+        grid-column: 1;
+        border-right: 1px rgba(0,0,0,.2) solid;
+    }
+    .about-me{
+        grid-column: 2;
+    }
+    .inner-container {
+        width: 70%;
+        margin: 0 auto;
+    }
+     /* {
+        height: 200px;
+    } */
+    .logo-container, .image-container{
         display: flex;
+        justify-content: center;
+        align-items: center;
         height: 150px;
     }
-    .nav-main-links{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        padding-right: 2rem;
-        border-right: 1px #f0f0f0 solid;
-
-        /* a{
-            padding: 1rem 0; 
-        } */
+    .logo {
+        font-size: 2.5rem;
+        font-weight: 600;
+        letter-spacing: -2px;
     }
-    .nav-sub-links{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-
-
-        .nav-sub-section{
-            display: flex;
-            height: 1.4rem;
-            align-items: flex-end;
-            a{
-                font-size: 1rem;
-                margin: 0 1.2rem;
-            }
+    .subscribe-button, .contact-button {
+        font-size: 2rem;
+        margin: 2rem 0;
+        padding: 1rem 0;
+        font-family: inherit;
+        color: #ff6b00;
+        opacity: 0.7;
+        border: 1px transparent solid;
+        background-color: transparent;
+        border-bottom: 1px #ff6b00 solid;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: all 0.2s;
+        :hover{
+            border: 1px #ff6b00 solid;
         }
-
-
+        
     }
+    .subscribe-button {
+        border-right: 1px #ff6b00 solid;
+    }
+    
+
+    
     
 
 
@@ -91,6 +106,10 @@ const FooterContainer = styled.footer `
 
 
 const Footer = props => {
+
+    const [subscribeFormOpen, toggleSubscribeForm] = useToggle(false)
+    const [contactFormOpen, toggleContactForm] = useToggle(false)
+
 
     const data = useStaticQuery(graphql`
     query imgQuery {
@@ -103,67 +122,53 @@ const Footer = props => {
       }
     }
     `)
-    
-
-
-    console.log(data)
-
 
     return(
         <FooterContainer>
-            <div className="inner-container">
-            <nav>
-                <Link className="logo" to='/'>sageMachina</Link>
-                <div className="about-text">
-                    {props.location.pathname === '/' ? 
-                    <>
-                    <p>sageMachina is a blog about coding, tech, wellness, and stoic philosophy.</p>
-                    <Image
-                        fixed={data.avatar.childImageSharp.fixed}
-                        alt='Jordan Lesich'
-                        imgStyle={{
-                        borderRadius: `50%`,
-                        }}
-                    />
-                    <p>It is written by Jordan Lesich, a web developer living in Toronto</p>
-                    </>
-                    :
-                    <>
-                    <Image
-                        fixed={data.avatar.childImageSharp.fixed}
-                        alt={'Jordan Lesich'}
-                        imgStyle={{
-                        borderRadius: `50%`,
-                        }}
-                    />
-                    <p>This article was written by Jordan Lesich, a web developer living in Toronto.</p>
-                    </>
-                    }   
-                </div>
-                {/* <div className="nav-links">
-                <div className="nav-main-links">
-                    <Link>About</Link>
-                    <Link>Portfolio</Link>
-                    <Link>Blog</Link>
-                </div>
-                <div className="nav-sub-links">
-                    <div className="nav-sub-section">
-                        <Link>sageMachina</Link>
-                        <Link>jordan</Link>
+                <button className='request-button' onClick={toggleContactForm}>Request an Article</button>
+                <div className="about-section">
+                    <div className="about-blog">
+                        <div className="inner-container">
+                            <div className="logo-container">
+                                <div className='logo'>sageMachina</div>
+                            </div>
+                            <p>
+                                {/* <Link className="logo" to='/'>sageMachina </Link> is a blog about coding, tech, wellness, and stoicism. */}
+                            This is a blog where tech, coding, business, and design come to hang out with stoic philosophy and living well. Its 
+                            purpose is to make us smarter, healthier, happier, and more capable, so that the machines we create can do the same for others. 
+                            </p>
+                            <p>
+                            Feel free to share this blog with others, or subscribe to find out when each new article has been released. 
+                            </p>
+                        </div>
                     </div>
-                    <div className="nav-sub-section">
-                        <Link>apps</Link>
-                        <Link>sites</Link>
-                        <Link>words</Link>
+                    <div className='about-me'>
+                    <div className='inner-container'>
+                        <div className='image-container'>
+                            <Image
+                                fixed={data.avatar.childImageSharp.fixed}
+                                alt='Jordan Lesich'
+                                imgStyle={{
+                                borderRadius: `50%`,
+                                }}
+                            />
+                        </div>
+                        <p>
+                            Hi, my name is Jordan. I'm a web developer and blogger living in Toronto, Ontario. This blog is a repository 
+                            for the experiences I've had as a developer. While it is true that I write to teach and help others, it is also 
+                            so that I can teach myself.
+                        </p>
+                        <p>
+                            You're welcome to visit my gitHub, Portfolio page(in construction), or linkedIn to see what I do. And if you have
+                            any questions, criticisms, comments, concerns, please let me know by clicking the contact button below. 
+                        </p>
+                        </div>
                     </div>
-                    <div className="nav-sub-section"> 
-                        <Link>blog</Link>
-                    </div>
+                    <button className='subscribe-button' onClick={toggleSubscribeForm}>Subscribe</button>
+                    {subscribeFormOpen && <SubscribeForm toggleSubscribeForm={toggleSubscribeForm}/>}
+                    <button className='contact-button' onClick={toggleContactForm}>Contact</button>
+                    {contactFormOpen && <ContactForm toggleContactForm={toggleContactForm}/>}
                 </div>
-                </div> */}
-            </nav>
-            </div>
-            <SubscribeFooter location={props.location}/>
         </FooterContainer>
         
     )

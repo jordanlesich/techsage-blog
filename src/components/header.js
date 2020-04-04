@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import useToggle from '../hooks/useToggle'
 import {Link} from 'gatsby'
-import SubscribeNav from './subscribeNav'
+import SubscribeForm from './subscribeForm'
+import ContactForm from './contactForm'
 
 
 const HeaderContainer = styled.header `
 
-    /* max-width: 1100px; */
-    margin: 0 auto;
-    position: relative;
+    max-width: 1000px;
+    margin: 3rem auto;
     
     .downArrow {
         height: 8px;
@@ -18,7 +18,7 @@ const HeaderContainer = styled.header `
 
     nav {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: space-between;
     }
 
@@ -46,11 +46,12 @@ const HeaderContainer = styled.header `
         font-size: 2.5rem;
         font-weight: 600;
         letter-spacing: -2.6px;
-        padding: 1rem 3rem 1rem 3rem;
+        box-sizing: border-box;
+        padding: 0rem 3rem 1rem 0rem;
         /* margin: 1rem 0; */
-        border-bottom: 1px #292929 solid;
-        border-left: 1px #292929 solid;
-        transform: translateX(-50px)
+        border-right: 1px rgba(0,0,0,.3) solid;
+        border-bottom: 1px rgba(0,0,0,.3) solid;
+        /* transform: translateX(-50px) */
     }
    
 
@@ -73,7 +74,7 @@ const HeaderContainer = styled.header `
     padding: .5rem 1rem 1rem 2rem;
 }
 
-ul li ul {
+/* ul li ul {
     visibility: hidden;
     opacity: 0;
     min-width: 5rem;
@@ -101,20 +102,33 @@ ul li ul {
                 text-decoration: none;
             }
         }
-    
-    
+     */
+        .options {
+            display: flex;
+            margin-right: 2rem;
+        }
         
-        .subscribe-button {
+        .subscribe-button, .contact-button {
             color: #ff6b00;
-            background-color: #ffffff;
-            border-radius: 3px;
+            background-color: transparent;
+            /* border-radius: 3px; */
             font-size: 1.4rem;
-            padding: .5rem 1rem;
-            border: 2px #ff6b00 solid;
+            padding: 1rem 1rem;
+            border: 1px transparent solid;
+            border-bottom: 1px #ff6b00 solid;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.2s;
+            :hover {
+                border: 1px #ff6b00 solid;
+            }
+           
+        }
+        .contact-button{
+            border-right: 1px #ff6b00 solid;
         }
     
 `
@@ -123,36 +137,27 @@ ul li ul {
 const Header = props => {
 
     const [subscribeFormOpen, toggleSubscribeForm] = useToggle(false)
+    const [contactFormOpen, toggleContactForm] = useToggle(false)
 
     return(
         <HeaderContainer>
             <nav>
-                <Link className="logo" to='/'>sageMachina</Link>
-                {/* <ul className="link-container">
-                    <li><Link to='/'>blog</Link>
-                        <ul className="dropdown">
-                            <li><Link>sagacity</Link></li>
-                            <li><Link>machina</Link></li>
-                            <li><Link>sageLife</Link></li>
-                            <li><Link>inDepth</Link></li>
-                        </ul>
-                    </li>
-                    <li><Link>about</Link>
-                        <ul className="dropdown">
-                            <li><Link>sageMachina</Link></li>
-                            <li><Link>jordan</Link></li>
-                        </ul>
-                    </li>
-                    <li><Link>portfolio</Link>
-                        <ul className="dropdown">
-                            <li><Link>web apps</Link></li>
-                            <li><Link>web pages</Link></li>
-                        </ul>
-                    </li>
-                </ul> */}
-            <div className="subscribe" >
+                <Link className="logo" to='/' id='top'>sageMachina</Link>
+            <div className="options" >
+                <button onClick={toggleContactForm} className='contact-button'> Contact</button>
                 <button onClick={toggleSubscribeForm} className='subscribe-button'> Subscribe</button>
-                {subscribeFormOpen && <SubscribeNav location={props.location} toggleSubscribeForm={toggleSubscribeForm} />}
+                {subscribeFormOpen && 
+                <SubscribeForm 
+                location={props.location} 
+                subscribeFormOpen ={subscribeFormOpen}
+                toggleSubscribeForm={toggleSubscribeForm} 
+                />}
+                {contactFormOpen && 
+                <ContactForm 
+                location={props.location} 
+                subscribeFormOpen ={subscribeFormOpen}
+                toggleContactForm={toggleContactForm} 
+                />}
             </div>
             </nav>
         </HeaderContainer>

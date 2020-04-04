@@ -15,15 +15,20 @@ const TopicContainer = styled.aside`
     ul {
         list-style: none;
     }
-    li {
+    button {
         opacity: 0.5;
         padding: 1rem;
+        width: 8rem;
+        font: inherit;
+        background-color: transparent;
+        border: none;
+        font-size: 1.2rem;
         border-radius: 3px;
         transition: all 0.1s;
+        font-weight: 500;
+        cursor: pointer;
 
-        a, a:visited {
-            color: #292929;
-        }
+        
         :hover {
             opacity: 1; 
             background-color: #eff4f9;
@@ -54,12 +59,12 @@ const topicSelector = props => {
     return (
         <TopicContainer>
             <ul>
-                <li className='list-item'><button onClick={handleClick} value='All'>WebDev</button></li>
+                <li className='list-item'><button onClick={handleClick} value='All'>All Topics</button></li>
                 <li className='list-item'><button onClick={handleClick} value='WebDev' >WebDev</button></li>
                 <li className='list-item'><button onClick={handleClick} value='Sagacity'>Sagacity</button></li>
                 <li className='list-item'><button onClick={handleClick} value='Projects'>Projects</button></li>
                 <li className='list-item'><button onClick={handleClick} value='SageLife'>SageLife</button></li>
-                <li className='list-item'><button onClick={handleClick}> <img src={upArrow}  alt='up arrow'/></button></li>
+                <li className='list-item'><button><a href='#top'> <img src={upArrow}  alt='up arrow'/></a></button></li>
             </ul>
         </TopicContainer>
     )

@@ -9,16 +9,16 @@ import styled from 'styled-components'
 
 const BlogPostWrapper = styled.main `
   width: 1000px;
-
+  grid-column: 2;
   .hero {
-    margin-top: 6rem;
+    margin-top: 3rem;
     border-bottom: 1px #292929 solid;
     margin-bottom: 4rem;
     h1 {
       font-size: 3.8rem;
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1.2;
-      letter-spacing: -1.5px;
+      letter-spacing: -2px;
       margin-bottom: 2rem;
     }
     .sub-text{
@@ -56,22 +56,25 @@ const BlogPostWrapper = styled.main `
     margin-left: 2rem;
     margin-bottom: 2rem;
   }
+
    h1 {
      font-size: 3.5rem;
      font-weight: 600;
      margin: 3.2rem 0rem;
-    
    }
+
    h2 {
      font-size: 3rem;
      font-weight: 600;
      margin: 3rem 0rem;
    }
+
    h3 {
      font-size: 2.2rem;
      font-weight: 600;
      margin: 2.6rem 0rem;
    }
+
    h4 {
      font-size: 1.8rem;
      font-weight: 600;
@@ -83,6 +86,19 @@ const BlogPostWrapper = styled.main `
      font-size: 1.4rem;
      margin: 2rem 0rem;
    }
+
+  }
+  .prev-next-section {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin-top: 3rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    .underline{
+
+    text-decoration: underline;
+    }
   }
   
   
@@ -136,18 +152,18 @@ const BlogPostTemplate = props => {
         <hr/>
         
 
-        <ul>
+        <ul className='prev-next-section'>
           <li>
             {previous && (
               <Link to={`blog${previous.fields.slug}`} rel="prev">
-                ← {previous.frontmatter.title}
+                ← <span className='underline'>{previous.frontmatter.title}</span>
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={`blog${next.fields.slug}`} rel="next">
-                {next.frontmatter.title} →
+              <Link to={`blog${next.fields.slug}`} rel="next" >
+                <span className='underline'>{next.frontmatter.title}</span> →
               </Link>
             )}
           </li>

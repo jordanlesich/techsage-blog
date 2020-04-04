@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled from 'styled-components'
+import TopArticle from '../components/topArticle'
 import BlogListing from "../components/blogListing"
 import TopicSelector from "../components/topicSelector"
 
@@ -19,7 +20,7 @@ const BlogWrapper = styled.div `
   .top-article-text {
     margin: 2rem 0 2rem 0;
     font-size: 1.4rem;
-    opacity: .5;
+    opacity: .6;
   }
 
   .no-posts-card{
@@ -34,8 +35,12 @@ const BlogWrapper = styled.div `
 
 const IndexPage = props =>  {
 
-    const {location} = props;
+    const {location} = props
     const siteTitle = "sageMachina Blog"
+    const { data } = props
+    const posts = data.allMdx.edges
+
+    
 
     const startingSubject = props.location.hasOwnProperty('state.subjectName')? 
     props.location.state.subjectName 
@@ -44,10 +49,18 @@ const IndexPage = props =>  {
 
     const [subjectName, setSubjectName] = useState(startingSubject)
 
+    const filteredPosts = subjectName === 'All' ? 
+    posts 
+    : 
+    posts.filter(({node}) => node.frontmatter.subject === subjectName)
 
-    const mapListings = (posts) => {
-    return <ul>
-            {posts.map(({ node }, index) => (
+    const topArticle = filteredPosts.length > 0 && filteredPosts[0];
+    const subPosts = filteredPosts.length > 1 && filteredPosts.slice(1) 
+
+    const mapListings = () => {
+      if (filteredPosts.length > 1) 
+        return <ul>
+            {subPosts.map(({ node }, index) => (
             <li key= {`list.${index}`}>
               <BlogListing
                 key = {node.fields.slug} 
@@ -67,64 +80,53 @@ const IndexPage = props =>  {
             ))
             }
           </ul>
+      else{
+        return <h2>No more articles in this category</h2>
+      }
   }
 
-  const filterListings = () => {
-    const posts = props.data.allMdx.edges
-    const filteredPosts = posts.filter(({node}) => node.frontmatter.subject === subjectName)
-    if(filteredPosts.length>0){
-      return mapListings(filteredPosts)
-    }
-    else{
-      return <h2 className="no-posts-card">No Posts Available</h2>
-    }
-  }
-
-  
   const changeSubject = (value) => {
       setSubjectName(value)
   }
 
-
-  
-  
-  const topicDescriptionText = () => {
-    switch(subjectName){
-      case 'All':
-        return 'All Topics'
-        case 'WebDev':
-          return 'Web Development'
-          case 'Sagacity':
-            return 'Stoicism'  
-            case 'Projects':
-              return `Coding Projects`
-              case 'SageLife':
-                return 'Living like a Sage'
-                default: 
-                return 'All';
-              }
-            }
-            
-    const { data } = props
-    const posts = data.allMdx.edges
-   
     return (
       <Layout location={location} title={siteTitle}>
         <SEO 
         title="Home"
-        keywords={[`web`, `development`, `stoic`, `tech`, `coding`, `react`, `gatsby`]}
+        keywords={[`web development`, `stoic`, `tech`, `coding`, `react`, `gatsby`]}
         />
           <BlogWrapper>
           <TopicSelector location={props.location} changeSubject={changeSubject}/>
-          <p className='top-article-text'>Featured Article:</p>
-          <p>{topicDescriptionText()}</p>
-          {
-          subjectName !== 'All'? 
-          filterListings()
-          :
-          mapListings(posts)
+          {filteredPosts.length > 0 ? 
+            <TopArticle 
+            key = {topArticle.node.fields.slug} 
+            slug = {topArticle.node.fields.slug}
+            header_image={topArticle.node.frontmatter.header_image}
+            img_alt = {topArticle.node.frontmatter.alt}
+            title = {topArticle.node.frontmatter.title}
+            subject = {topArticle.node.frontmatter.subject}
+            timeToRead = {topArticle.node.timeToRead}
+            date = {topArticle.node.frontmatter.date}
+            excerpt = {topArticle.node.frontmatter.description || 
+            topArticle.node.excerpt}
+            changeSubject={changeSubject}
+            />
+          : 
+          <h2 style={{height: '70vh', fontSize: '3.5vw'}}>Sorry, there are no articles in this category yet</h2>
           }
-        
+          { filteredPosts.length > 0 && (
+            <>
+          <p className='top-article-text'>Latest 
+          {subjectName === 'All'?  
+          ' Blog Articles:'
+          : 
+          ` in ${subjectName}:`
+          }
+          </p>
+          
+         { mapListings()}
+            </>)
+          }
         </BlogWrapper>
       </Layout>
     )
