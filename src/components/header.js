@@ -105,7 +105,6 @@ const HeaderContainer = styled.header `
      */
         .options {
             display: flex;
-            margin-right: 2rem;
         }
         
         .subscribe-button, .contact-button {
@@ -130,6 +129,11 @@ const HeaderContainer = styled.header `
         .contact-button{
             border-right: 1px #ff6b00 solid;
         }
+        @media (max-width: 1149px) {
+        margin: 2rem 3rem 0 3rem;
+        
+        
+    }
     
 `
 

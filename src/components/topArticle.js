@@ -132,4 +132,25 @@ const StyleWrapper = styled.article`
     border: none;
     background-color: none;
   }
+
+  @media (max-width: 956px) {
+    .main-article{
+      padding: 0;
+    }
+    img{
+      margin-right: 0;
+    }
+    h2{
+      font-size: 2rem;
+    }
+    .excerpt {
+      font-size: 1.2rem;
+    }
+    .side-ruler{
+      display: none;
+    }
+    .main-info{
+      margin: 0;
+    }
+  }
 `

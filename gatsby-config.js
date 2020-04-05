@@ -3,7 +3,6 @@ module.exports = {
   
 
   siteMetadata: {
-    // edit below
     title: `sageMachina`,
     author: `Jordan Lesich`,
     description: `Sage Words for all things web development, tech, self-mastery, and philosophy`,
@@ -56,22 +55,22 @@ module.exports = {
           {
             resolve: `gatsby-remark-vscode`,
           },
-          {
-            resolve: `gatsby-remark-copy-linked-files`,
-          },
+          // {
+          //   resolve: `gatsby-remark-copy-linked-files`,
+          // },
           {
             resolve: `gatsby-remark-smartypants`,
           },
         ],
       },
     },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // edit below
-        // trackingId: `ADD YOUR TRACKING ID HERE`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     // edit below
+    //     // trackingId: `ADD YOUR TRACKING ID HERE`,
+    //   },
+    // },
       {
           resolve: 'gatsby-plugin-mailchimp',
           options: {

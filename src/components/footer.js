@@ -8,9 +8,11 @@ import ContactForm from './contactForm'
 
 const FooterContainer = styled.footer `
 
-    width: 1000px;
-    margin: 0 auto 0 auto;
+    max-width: 1000px;
+    margin: 0 auto ;
     position: relative;
+
+    
 
     .request-button{
         display: block;
@@ -24,7 +26,6 @@ const FooterContainer = styled.footer `
         border-left: 1px #ff6b00 solid;
         cursor: pointer;
         font-size: 1.6rem;
-        /* font-weight: 6400; */
         letter-spacing: -1.5px;
         transition: all .2s;
 
@@ -36,20 +37,22 @@ const FooterContainer = styled.footer `
         
 
     .about-section{
-        color: #262626;
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
+
     .about-blog, .about-me{
         width: 100%;
         border-top: 1px rgba(0,0,0,.4) solid;
         margin-top: 2rem;
         font-size: 1rem;
-        opacity: .9;
         p{
             margin: 0 1rem 2rem 3rem;
         }
+        
     }
+
+    
     .about-blog{
         grid-column: 1;
         border-right: 1px rgba(0,0,0,.2) solid;
@@ -61,15 +64,14 @@ const FooterContainer = styled.footer `
         width: 70%;
         margin: 0 auto;
     }
-     /* {
-        height: 200px;
-    } */
+     
     .logo-container, .image-container{
         display: flex;
         justify-content: center;
         align-items: center;
         height: 150px;
     }
+
     .logo {
         font-size: 2.5rem;
         font-weight: 600;
@@ -81,7 +83,7 @@ const FooterContainer = styled.footer `
         padding: 1rem 0;
         font-family: inherit;
         color: #ff6b00;
-        opacity: 0.7;
+        /* opacity: 0.7; */
         border: 1px transparent solid;
         background-color: transparent;
         border-bottom: 1px #ff6b00 solid;
@@ -95,13 +97,63 @@ const FooterContainer = styled.footer `
     }
     .subscribe-button {
         border-right: 1px #ff6b00 solid;
+        grid-row: 2;
+        grid-column: 1
     }
-    
+    .conact-button {
+        grid-column: 2;
+        grid-row: 1;
+    }
 
-    
-    
+    @media (max-width: 1149px) {
+        margin: 0 3rem;
+        .inner-container{
+            width: 85%;
+        }
+    }
+    @media (max-width: 856px) {
+        .inner-container {
+            width: 100%;
+        }
+    }
+    @media (max-width: 756px) {
+        .about-section{
+            display: flex;
+            flex-direction: column;
+        }
+        .about-me{
+            margin: 0;
+            padding-top: 2rem;
+        }
 
-
+        .about-blog{
+            border-right: none;
+           
+        }
+        
+        .logo-container, .image-container{
+            height: 100px;
+        }
+        .image-container{
+            margin-right: 1rem;
+            float: left;
+        }
+        .logo-container{
+            display: block;
+            height: auto;
+            margin-bottom: 0rem;
+            float: left;
+        }
+        .logo{
+            margin: 0;
+        }
+        .contact-button, .subscribe-button {
+            margin: 0;
+        }
+        .this {
+            display: none;
+        }
+    }
 `
 
 
@@ -134,7 +186,7 @@ const Footer = props => {
                             </div>
                             <p>
                                 {/* <Link className="logo" to='/'>sageMachina </Link> is a blog about coding, tech, wellness, and stoicism. */}
-                            This is a blog where tech, coding, business, and design come to hang out with stoic philosophy and living well. Its 
+                            <span className='this'>This </span> is a blog where tech, coding, business, and design come to hang out with stoic philosophy and living well. Its 
                             purpose is to make us smarter, healthier, happier, and more capable, so that the machines we create can do the same for others. 
                             </p>
                             <p>
@@ -164,10 +216,11 @@ const Footer = props => {
                         </p>
                         </div>
                     </div>
-                    <button className='subscribe-button' onClick={toggleSubscribeForm}>Subscribe</button>
-                    {subscribeFormOpen && <SubscribeForm toggleSubscribeForm={toggleSubscribeForm}/>}
+
                     <button className='contact-button' onClick={toggleContactForm}>Contact</button>
-                    {contactFormOpen && <ContactForm toggleContactForm={toggleContactForm}/>}
+                    {contactFormOpen && <ContactForm toggleContactForm={toggleContactForm} /> }
+                    <button className='subscribe-button' onClick={toggleSubscribeForm}>Subscribe</button>
+                    {subscribeFormOpen && <SubscribeForm toggleSubscribeForm={toggleSubscribeForm} /> }
                 </div>
         </FooterContainer>
         

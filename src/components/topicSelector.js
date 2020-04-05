@@ -6,7 +6,6 @@ import upArrow from '../utils/up.svg'
 const TopicContainer = styled.aside`
 
     position: fixed;
-    
     top: 40vh;
     right: 2%;
     font-size: 1.4rem;
@@ -36,6 +35,12 @@ const TopicContainer = styled.aside`
     img {
         height: 50px;
     }
+
+    @media (max-width: 1340px) {
+	  display: none;
+    }
+
+
         
     }
 `
