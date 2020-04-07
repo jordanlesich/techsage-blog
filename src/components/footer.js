@@ -75,7 +75,7 @@ const FooterContainer = styled.footer `
     .logo {
         font-size: 2.5rem;
         font-weight: 600;
-        letter-spacing: -2px;
+        letter-spacing: -2.8px;
     }
     .subscribe-button, .contact-button {
         font-size: 2rem;
@@ -117,13 +117,13 @@ const FooterContainer = styled.footer `
         }
     }
     @media (max-width: 756px) {
+        margin: 0 1rem;
         .about-section{
             display: flex;
             flex-direction: column;
         }
         .about-me{
             margin: 0;
-            padding-top: 2rem;
         }
 
         .about-blog{
@@ -131,28 +131,18 @@ const FooterContainer = styled.footer `
            
         }
         
-        .logo-container, .image-container{
-            height: 100px;
-        }
-        .image-container{
-            margin-right: 1rem;
-            float: left;
-        }
-        .logo-container{
-            display: block;
-            height: auto;
-            margin-bottom: 0rem;
-            float: left;
+        .logo-container {
+            height: 110px;
         }
         .logo{
             margin: 0;
+            margin-right: 6px;
+            font-size: 2.5rem;
         }
         .contact-button, .subscribe-button {
             margin: 0;
         }
-        .this {
-            display: none;
-        }
+        
     }
 `
 

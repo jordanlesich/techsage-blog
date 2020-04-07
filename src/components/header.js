@@ -45,7 +45,7 @@ const HeaderContainer = styled.header `
     .logo {
         font-size: 2.5rem;
         font-weight: 600;
-        letter-spacing: -2.6px;
+        letter-spacing: -3px;
         box-sizing: border-box;
         padding: 0rem 3rem 1rem 0rem;
         /* margin: 1rem 0; */

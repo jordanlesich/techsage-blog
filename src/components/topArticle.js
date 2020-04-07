@@ -1,9 +1,10 @@
 import React from "react"
 import { Link } from "gatsby"
+import { useMediaQuery } from 'react-responsive'
 
 import styled from "styled-components"
 
-const topArticle = props => {
+const TopArticle = props => {
   const thumbnail = props.header_image
   const blogSlug = `/blog/${props.slug}`
 
@@ -11,8 +12,12 @@ const topArticle = props => {
     props.changeSubject(props.subject)
   }
 
+  const isSmallTabletOrMobile = useMediaQuery({
+    query: '(max-width: 766px)'
+  })
+ 
+
   return (
-    <>
       <StyleWrapper props={props}>
         <div className="subject-wrapper">
           Newest in{" "}
@@ -26,6 +31,7 @@ const topArticle = props => {
           <div className="main-info">
             <Link to={blogSlug}></Link>
             <h2> {props.title} </h2>
+            {isSmallTabletOrMobile && <img src={thumbnail} alt={props.img_alt} />}
             <p
               className="excerpt"
               dangerouslySetInnerHTML={{ __html: props.excerpt }}
@@ -35,14 +41,13 @@ const topArticle = props => {
               <span className="date"> -- {props.date}</span>
             </p>
           </div>
-          <img src={thumbnail} alt={props.img_alt} />
+         {isSmallTabletOrMobile || <img src={thumbnail} alt={props.img_alt} />}
         </div>
       </StyleWrapper>
-    </>
   )
 }
 
-export default topArticle
+export default TopArticle
 
 const StyleWrapper = styled.article`
   position: relative;
@@ -107,7 +112,7 @@ const StyleWrapper = styled.article`
   }
   img {
     height: auto;
-    width: 70%;
+    min-width: 35%;
     margin-right: 2rem;
   }
 
@@ -139,18 +144,75 @@ const StyleWrapper = styled.article`
     }
     img{
       margin-right: 0;
+      margin-left: 2rem;
+      min-width: 45%;
+
     }
     h2{
-      font-size: 2rem;
+      font-size: 2.8rem;
+      margin-bottom: 4rem;
     }
     .excerpt {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
+      margin-bottom: 3rem;
+      margin-right: 0rem;
+
     }
     .side-ruler{
       display: none;
     }
     .main-info{
       margin: 0;
+    }
+  }
+  @media (max-width: 766px) {
+
+    h2{
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    img{
+      max-width: 50vw;
+      margin: 0 auto;
+      display: block;
+      float: left;
+      margin-right: 2rem;
+    }
+    .excerpt{
+      font-size: 1.3rem;
+      /* margin-top: 4rem; */
+    }
+  }
+  @media (max-width: 567px) {
+    
+    .main-info{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    h2{
+
+      text-align: center;
+      font-size: calc(1rem + 0.5vh + 1.5vw);
+      margin: 0 1.2rem 0.5rem 1rem;
+      padding-bottom: .5rem;
+      align-self: flex-start;
+      border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+      width: 100%;
+      text-align:left;
+    }
+    img{
+      min-width: 70vw;
+      float: none;
+      margin: 0 auto;
+    }
+    .excerpt{
+      display: none;
+      /* margin-top: 4rem; */
+    }
+    .info-text{
     }
   }
 `

@@ -37,6 +37,9 @@ grid-template-columns: auto 1000px auto;
   justify-content: center;
   margin: 0 3rem;
 }
+@media (max-width: 756px) {
+  margin: 0 1rem;
+}
 
 `
 
@@ -49,7 +52,7 @@ const Layout = props => {
       
       <>
         <GlobalStyle />
-          <Header location={location}/>
+          {/* <Header location={location}/> */}
           <MainLayout>
             {children}
           </MainLayout>
