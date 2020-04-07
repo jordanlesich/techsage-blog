@@ -1,9 +1,10 @@
 import React from 'react'
 import {Link} from 'gatsby'
+import { useMediaQuery } from 'react-responsive'
 
 import styled from 'styled-components'
 
-const blogListing = props => {
+const BlogListing = props => {
 
     const thumbnail = props.header_image
     const blogSlug = `/blog/${props.slug}`
@@ -13,33 +14,35 @@ const blogListing = props => {
         props.changeSubject(props.subject)
     }
 
+    const isMobile = useMediaQuery({
+        query: '(max-width: 567px)'
+      })
+
     return(
-    <>
     
     <StyleWrapper props={props}>
             <div className="main-card">
             <Link to={blogSlug}></Link>
             <div className="main-info">
                 <h2> {props.title} </h2>
+                {isMobile && <img src={thumbnail} alt={props.img_alt}/>}
                 <p className="excerpt" dangerouslySetInnerHTML={{ __html: props.excerpt}}/> 
                 <p className="info-text">    
                 {props.timeToRead} Min Read 
                 <span className="date"> -- {props.date}</span>
                 </p>
-              
             </div>  
-            <img src={thumbnail} alt={props.img_alt}/>
+            {isMobile || <img src={thumbnail} alt={props.img_alt}/>}
             </div>
             <div className='subject-wrapper'>
                 <button className='subject-button' onClick={handleClick}> {props.subject}</button>
             </div>
     </StyleWrapper>
 
-    </>
     )
 }
 
-export default blogListing
+export default BlogListing
 
 const StyleWrapper = styled.article ` 
 
@@ -144,6 +147,9 @@ const StyleWrapper = styled.article `
             font-size: 1.1rem;
     
         }
+    }
+    @media (max-width: 956px) {
+        
     }
 
 `

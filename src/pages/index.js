@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import TopArticle from '../components/topArticle'
 import BlogListing from "../components/blogListing"
 import TopicSelector from "../components/topicSelector"
+import {useMediaQuery} from 'react-responsive'
 
 
 const BlogWrapper = styled.div `
@@ -40,7 +41,9 @@ const IndexPage = props =>  {
     const { data } = props
     const posts = data.allMdx.edges
 
-    
+    const isMobile = useMediaQuery({
+      query: '(max-width: 567px)'
+    })
 
     const startingSubject = props.location.hasOwnProperty('state.subjectName')? 
     props.location.state.subjectName 
@@ -116,13 +119,14 @@ const IndexPage = props =>  {
           }
           { filteredPosts.length > 0 && (
             <>
-          <p className='top-article-text'>Latest 
+         {isMobile || <p className='top-article-text'>Latest 
           {subjectName === 'All'?  
           ' Blog Articles:'
           : 
           ` in ${subjectName}:`
           }
           </p>
+          }
           
          { mapListings()}
             </>)
