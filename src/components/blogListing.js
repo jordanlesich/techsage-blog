@@ -97,10 +97,9 @@ const StyleWrapper = styled.article `
         font: inherit;
         font-size: 1.4rem;
         margin: 0 auto;
-        color: #ff6b00;
+        color: rgba(255, 123, 0, 1);
         font-weight: 400;
         text-decoration: underline;
-        opacity: .6;
     }
 
     h2 {

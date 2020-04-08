@@ -218,4 +218,37 @@ const FormWrapper = styled.div`
                 background-color: #1c223e;
             }
         }
+        @media (max-width: 567px) {
+
+
+          .overlay{
+            display: none;
+          }
+          .drawer{
+          max-width: 100vw;
+          height: 100%;
+          }
+          form {
+            justify-content: space-around;
+            margin: 0;
+            .form-title{
+              margin: 0;
+            }
+            label {
+              margin: 0;
+              font-size: 1.2rem;
+            }
+            input {
+              margin: 0;
+            }
+            textarea {
+              height: 8rem;
+              margin: 0;
+            }
+
+
+
+          }
+
+        }
 `

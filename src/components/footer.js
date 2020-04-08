@@ -22,15 +22,15 @@ const FooterContainer = styled.footer `
         padding: 1rem 2rem;
         margin: 4rem auto;
         border: 1px transparent solid;
-        border-top: 1px rgba(255, 123, 0, .4) solid;
-        border-left: 1px rgba(255, 123, 0, .4) solid;
+        border-top: 1px rgba(255, 123, 0, 1) solid;
+        border-left: 1px rgba(255, 123, 0, 1) solid;
         cursor: pointer;
         font-size: 1.6rem;
         letter-spacing: -1.5px;
         transition: all .2s;
 
         :hover, :focus{
-        border: 1px rgba(255, 123, 0, .4) solid;
+        border: 1px rgba(255, 123, 0, 1) solid;
         box-shadow: 1px 2px 3px 2px rgba(0,0,0,.09)
         }
     }
@@ -87,17 +87,17 @@ const FooterContainer = styled.footer `
         /* opacity: 0.7; */
         border: 1px transparent solid;
         background-color: transparent;
-        border-bottom: 1px rgba(255, 123, 0, .4) solid;
+        border-bottom: 1px rgba(255, 123, 0, 1) solid;
         cursor: pointer;
         transition: all 0.2s;
         :hover{
-            border: 1px rgba(255, 123, 0, .4) solid;
+            border: 1px rgba(255, 123, 0, 1) solid;
             box-shadow: 1px 2px 3px 2px rgba(0,0,0,.1)
         }
 
     }
     .subscribe-button {
-        border-right: 1px rgba(255, 123, 0, .4) solid;
+        border-right: 1px rgba(255, 123, 0, 1) solid;
         grid-row: 2;
         grid-column: 1
     }
@@ -179,8 +179,8 @@ const FooterContainer = styled.footer `
             margin: 0 auto;
         }
         .contact-button{
-            border-top: 1px rgba(255, 123, 0, .4) solid;
-            border-left: 1px rgba(255, 123, 0, .4) solid;
+            border-top: 1px rgba(255, 123, 0, 1) solid;
+            border-left: 1px rgba(255, 123, 0, 1) solid;
         }
         
 

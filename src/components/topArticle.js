@@ -19,13 +19,13 @@ const TopArticle = props => {
 
   return (
       <StyleWrapper props={props}>
-        <div className="subject-wrapper">
+        {/* <div className="subject-wrapper">
           Newest in{" "}
           <button className="subject-button" onClick={handleClick}>
             {" "}
             {props.subject}
           </button>:
-        </div>
+        </div> */}
         <div className="main-article">
           <div className="side-ruler"></div>
           <div className="main-info">
