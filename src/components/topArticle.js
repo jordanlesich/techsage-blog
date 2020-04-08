@@ -191,7 +191,6 @@ const StyleWrapper = styled.article`
     .main-article {
       margin: 0 auto;
       width: 80vw;
-      border-bottom: 1px rgba(0,0,0,.25) solid;
     }
     
     .main-info{

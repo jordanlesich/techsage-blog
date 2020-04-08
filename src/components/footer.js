@@ -22,16 +22,16 @@ const FooterContainer = styled.footer `
         padding: 1rem 2rem;
         margin: 4rem auto;
         border: 1px transparent solid;
-        border-top: 1px #ff6b00 solid;
-        border-left: 1px #ff6b00 solid;
+        border-top: 1px rgba(255, 123, 0, .4) solid;
+        border-left: 1px rgba(255, 123, 0, .4) solid;
         cursor: pointer;
         font-size: 1.6rem;
         letter-spacing: -1.5px;
         transition: all .2s;
 
         :hover, :focus{
-        border: 1px #ff6b00 solid;
-        box-shadow: 1px 2px 3px 2px rgba(0,0,0,.15)
+        border: 1px rgba(255, 123, 0, .4) solid;
+        box-shadow: 1px 2px 3px 2px rgba(0,0,0,.09)
         }
     }
         
@@ -39,6 +39,7 @@ const FooterContainer = styled.footer `
     .about-section{
         display: grid;
         grid-template-columns: 1fr 1fr;
+        margin-bottom: 3rem;
     }
 
     .about-blog, .about-me{
@@ -86,17 +87,17 @@ const FooterContainer = styled.footer `
         /* opacity: 0.7; */
         border: 1px transparent solid;
         background-color: transparent;
-        border-bottom: 1px #ff6b00 solid;
+        border-bottom: 1px rgba(255, 123, 0, .4) solid;
         cursor: pointer;
-        border-radius: 3px;
         transition: all 0.2s;
         :hover{
-            border: 1px #ff6b00 solid;
+            border: 1px rgba(255, 123, 0, .4) solid;
+            box-shadow: 1px 2px 3px 2px rgba(0,0,0,.1)
         }
         
     }
     .subscribe-button {
-        border-right: 1px #ff6b00 solid;
+        border-right: 1px rgba(255, 123, 0, .4) solid;
         grid-row: 2;
         grid-column: 1
     }
@@ -139,11 +140,52 @@ const FooterContainer = styled.footer `
             margin-right: 6px;
             font-size: 2.5rem;
         }
+        
         .contact-button, .subscribe-button {
             margin: 0;
         }
         
     }
+    @media (max-width: 567px) {
+        
+        
+        .about-blog, .about-me {
+            margin-top: 1rem;
+            border-top: 1px rgba(0,0,0,.2) solid;
+            font-size: calc(.55rem + 0.5vh + 1.5vw);
+        }
+        .about-blog p, .about-me p {
+            /* font-size: calc(.6rem + 0.5vh + 1.5vw); */
+            margin: 1rem 2.5rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .logo-container {
+            height: auto;
+        }
+        .logo{
+            margin: .5rem 0;
+            font-size: 2.5rem;
+        }
+        .image-container{
+            height: auto;
+            margin-top: 1rem;
+        }
+        .contact-button, .subscribe-button {
+            width: 50%;
+            font-size: calc(.9rem + 0.5vh + 1.5vw);
+            padding: .5rem 1rem;
+            margin: 0 auto;
+        }
+        .contact-button{
+            border-top: 1px rgba(255, 123, 0, .4) solid;
+            border-left: 1px rgba(255, 123, 0, .4) solid;
+        }
+        
+
+    }
+
 `
 
 
