@@ -94,7 +94,7 @@ const FooterContainer = styled.footer `
             border: 1px rgba(255, 123, 0, .4) solid;
             box-shadow: 1px 2px 3px 2px rgba(0,0,0,.1)
         }
-        
+
     }
     .subscribe-button {
         border-right: 1px rgba(255, 123, 0, .4) solid;
