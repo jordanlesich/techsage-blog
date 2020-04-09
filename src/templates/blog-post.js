@@ -10,13 +10,21 @@ import styled from 'styled-components'
 const BlogPostWrapper = styled.main `
   width: 1000px;
   grid-column: 2;
+
+  .border-container{
+    border-right: 1px rgba(0,0,0,0.2) solid;
+    border-left: 1px rgba(0,0,0,0.2) solid;
+    width: 100%;
+  }
   .hero {
-    margin-top: 3rem;
-    border-bottom: 1px #292929 solid;
-    margin-bottom: 4rem;
+    padding-top: 2rem;
+    margin: 0 auto;
+    width: 60%;
+    border-bottom: 1px rgba(0,0,0,0.2) solid;
+   
     h1 {
       font-size: 3.8rem;
-      font-weight: 600;
+      font-weight: 700;
       line-height: 1.2;
       letter-spacing: -2px;
       margin-bottom: 2rem;
@@ -34,24 +42,25 @@ const BlogPostWrapper = styled.main `
     }
   .article-info{
     margin-left: 1rem;
-    
   }
   .author-info {
-    font-size:1.3rem;
+    font-size:1.1rem;
     font-weight: 700;
   }
   .date{
-    font-weight: 300;
+    font-size: 1rem;
+  }
+  .subject{
+    font-size: 1rem;
   }
     
   }
-
   .main-body{
-    width: 80%;
-    margin-left: 5rem;
+    width: 60%;
+    margin: 0 auto;
 
-    .title-image{
-    width: 45%;
+  .title-image{
+    width: 40%;
     float: right;
     margin-left: 2rem;
     margin-bottom: 2rem;
@@ -59,31 +68,31 @@ const BlogPostWrapper = styled.main `
 
    h1 {
      font-size: 3.5rem;
-     font-weight: 600;
+     font-weight: 300;
      margin: 3.2rem 0rem;
    }
 
    h2 {
      font-size: 3rem;
-     font-weight: 600;
+     font-weight: 300;
      margin: 3rem 0rem;
    }
 
    h3 {
      font-size: 2.2rem;
-     font-weight: 600;
+     font-weight: 300;
      margin: 2.6rem 0rem;
    }
 
    h4 {
      font-size: 1.8rem;
-     font-weight: 600;
+     font-weight: 400;
      margin: 2.2rem 0rem;
    }
 
    p{
-     line-height: 1.5;
-     font-size: 1.4rem;
+     line-height: 1.4;
+     font-size: 1.5rem;
      margin: 2rem 0rem;
    }
 
@@ -92,11 +101,12 @@ const BlogPostWrapper = styled.main `
     display: flex;
     justify-content: space-between;
     list-style: none;
-    margin-top: 3rem;
+    margin-top: 6rem;
     font-size: 1.4rem;
     font-weight: 600;
-    .underline{
 
+
+    .underline{
     text-decoration: underline;
     }
   }
@@ -121,6 +131,7 @@ const BlogPostTemplate = props => {
         />
         <TopicSelector location={props.location} />
         <BlogPostWrapper >
+        <div className='border-container' >
           <div className='hero'>
             <h1>{post.frontmatter.title}</h1>
             <div className="sub-text">
@@ -140,18 +151,15 @@ const BlogPostTemplate = props => {
               </div>
               </div>
           </div>
-        <div className="main-body">
-          <img 
-          src={blogSVG} 
-          className="title-image" 
-          alt={post.frontmatter.alt || post.frontmatter.title} />
-          <MDXRenderer>{post.body}</MDXRenderer>
+       
+          <div className="main-body">
+            <img 
+            src={blogSVG} 
+            className="title-image" 
+            alt={post.frontmatter.alt || post.frontmatter.title} />
+            <MDXRenderer>{post.body}</MDXRenderer>
+          </div>
         </div>
-
-
-        <hr/>
-        
-
         <ul className='prev-next-section'>
           <li>
             {previous && (

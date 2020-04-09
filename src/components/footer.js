@@ -20,7 +20,7 @@ const FooterContainer = styled.footer `
         color: #ff6b00;
         text-align: center;
         padding: 1rem 2rem;
-        margin: 4rem auto;
+        margin: 4rem auto 0 auto;
         border: 1px transparent solid;
         border-top: 1px rgba(255, 123, 0, 1) solid;
         border-left: 1px rgba(255, 123, 0, 1) solid;
@@ -37,9 +37,10 @@ const FooterContainer = styled.footer `
         
 
     .about-section{
+        margin-top: 4rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
     }
 
     .about-blog, .about-me{
@@ -101,9 +102,9 @@ const FooterContainer = styled.footer `
         grid-row: 2;
         grid-column: 1
     }
-    .conact-button {
+    .contact-button {
         grid-column: 2;
-        grid-row: 1;
+        grid-row: 2;
     }
 
     @media (max-width: 1149px) {
@@ -194,6 +195,8 @@ const Footer = props => {
     const [subscribeFormOpen, toggleSubscribeForm] = useToggle(false)
     const [contactFormOpen, toggleContactForm] = useToggle(false)
 
+    const {pathname} = props.location;
+
 
     const data = useStaticQuery(graphql`
     query imgQuery {
@@ -207,8 +210,13 @@ const Footer = props => {
     }
     `)
 
+    console.log(pathname)
     return(
+        
+        
         <FooterContainer>
+            {pathname === '/'? 
+                <>
                 <button className='request-button' onClick={toggleContactForm}>Request an Article</button>
                 <div className="about-section">
                     <div className="about-blog">
@@ -254,7 +262,18 @@ const Footer = props => {
                     <button className='subscribe-button' onClick={toggleSubscribeForm}>Subscribe</button>
                     {subscribeFormOpen && <SubscribeForm toggleSubscribeForm={toggleSubscribeForm} /> }
                 </div>
+                </>
+                :
+                <div className='about-section'>  
+                        <button className='contact-button' onClick={toggleContactForm}>Contact</button>
+                            {contactFormOpen && <ContactForm toggleContactForm={toggleContactForm} /> }
+                        <button className='subscribe-button' onClick={toggleSubscribeForm}>Subscribe</button>
+                            {subscribeFormOpen && <SubscribeForm toggleSubscribeForm={toggleSubscribeForm} /> }
+                </div>
+                
+                }
         </FooterContainer>
+    
         
     )
 }
