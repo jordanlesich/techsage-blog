@@ -1,7 +1,7 @@
 import React from 'react'
 import useToggle from '../hooks/useToggle'
 import styled from 'styled-components'
-import {useStaticQuery} from 'gatsby'
+import {useStaticQuery, Link} from 'gatsby'
 import Image from 'gatsby-image'
 import SubscribeForm from './subscribeForm'
 import ContactForm from './contactForm'
@@ -107,6 +107,16 @@ const FooterContainer = styled.footer `
         grid-row: 2;
     }
 
+    .home-link {
+        font-size: 2.4rem;
+        font-weight: 600;
+        letter-spacing: -2px;
+        margin: 2rem auto;
+        text-decoration: underline;
+        width: 100%;
+        text-align: center;
+    }
+
     @media (max-width: 1149px) {
         margin: 0 3rem;
         .inner-container{
@@ -159,7 +169,10 @@ const FooterContainer = styled.footer `
             /* font-size: calc(.6rem + 0.5vh + 1.5vw); */
             margin: 1rem 2.5rem;
             line-height: 1.5;
-            text-align: center;
+            text-align: left;
+        }
+        .about-me {
+            margin-bottom: 2rem;
         }
 
         .logo-container {
@@ -264,12 +277,15 @@ const Footer = props => {
                 </div>
                 </>
                 :
+                <>
                 <div className='about-section'>  
                         <button className='contact-button' onClick={toggleContactForm}>Contact</button>
                             {contactFormOpen && <ContactForm toggleContactForm={toggleContactForm} /> }
                         <button className='subscribe-button' onClick={toggleSubscribeForm}>Subscribe</button>
                             {subscribeFormOpen && <SubscribeForm toggleSubscribeForm={toggleSubscribeForm} /> }
                 </div>
+                        <Link className='home-link'>Home</Link>
+                </>
                 
                 }
         </FooterContainer>

@@ -8,9 +8,9 @@ const TopArticle = props => {
   const thumbnail = props.header_image
   const blogSlug = `/blog/${props.slug}`
 
-  const handleClick = e => {
-    props.changeSubject(props.subject)
-  }
+  // const handleClick = e => {
+  //   props.changeSubject(props.subject)
+  // }
 
   const isSmallTabletOrMobile = useMediaQuery({
     query: '(max-width: 766px)'
