@@ -85,7 +85,6 @@ const FooterContainer = styled.footer `
         padding: 1rem 0;
         font-family: inherit;
         color: #ff6b00;
-        /* opacity: 0.7; */
         border: 1px transparent solid;
         background-color: transparent;
         border-bottom: 1px rgba(255, 123, 0, 1) solid;
@@ -166,7 +165,6 @@ const FooterContainer = styled.footer `
             font-size: calc(.55rem + 0.5vh + 1.5vw);
         }
         .about-blog p, .about-me p {
-            /* font-size: calc(.6rem + 0.5vh + 1.5vw); */
             margin: 1rem 2.5rem;
             line-height: 1.5;
             text-align: left;

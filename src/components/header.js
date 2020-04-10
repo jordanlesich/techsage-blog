@@ -86,7 +86,7 @@ const HeaderContainer = styled.header `
         margin-top: .5rem;
             
         nav{
-            width: 80vw;
+            width: 60%;
             margin: 0 auto;
             flex-direction: column;
             align-items: center;

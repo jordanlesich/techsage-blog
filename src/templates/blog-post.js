@@ -123,7 +123,7 @@ const BlogPostWrapper = styled.main `
     }
 
     .hero {
-      width: 80%;
+      width: 100%;
     
       h1 {
         font-size: 2rem;
@@ -150,7 +150,7 @@ const BlogPostWrapper = styled.main `
 
     }
     .main-body {
-      width: 80%;
+      width: 100%;
       height: auto;
       /* justify-content: center; */
 
@@ -181,7 +181,7 @@ const BlogPostWrapper = styled.main `
    }
     
     p {
-        font-size: 1.25rem;
+      font-size: calc(.5rem + 0.6vh + 1.7vw);
       }
     }
   

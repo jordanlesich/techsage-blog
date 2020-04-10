@@ -41,7 +41,8 @@ grid-template-columns: auto 1000px auto;
   margin: 0 1rem;
 }
 @media (max-width: 567px) {
-  margin: 0;
+  width: 95%;
+  margin: 0 auto;
 }
 
 `
