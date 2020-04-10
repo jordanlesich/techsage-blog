@@ -42,7 +42,7 @@ grid-template-columns: auto 1000px auto;
 }
 @media (max-width: 567px) {
   width: 85%;
-  font-weight: 500;
+ 
   margin: 0 auto;
 }
 
