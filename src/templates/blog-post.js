@@ -181,7 +181,7 @@ const BlogPostWrapper = styled.main `
    }
     
     p {
-      font-size: calc(.5rem + 0.6vh + 1.7vw);
+      font-size: calc(.6rem + 0.6vh + 1.7vw);
       }
     }
   
