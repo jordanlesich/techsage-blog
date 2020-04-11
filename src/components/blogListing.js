@@ -105,6 +105,7 @@ const StyleWrapper = styled.article `
     h2 {
         font-size: 1.8rem;
         margin-bottom: 1rem;
+        text-decoration: underline;
     }
 
     .info-text{

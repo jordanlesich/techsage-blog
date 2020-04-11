@@ -9,7 +9,8 @@ import ContactForm from './contactForm'
 const HeaderContainer = styled.header `
 
     max-width: 1000px;
-    margin: 3rem auto;
+    padding: 3rem 0;
+    margin: 0 auto;
     
     nav {
         display: flex;
@@ -23,10 +24,12 @@ const HeaderContainer = styled.header `
         letter-spacing: -3px;
         box-sizing: border-box;
         padding: 0rem 3rem 1rem 0rem;
-        /* margin: 1rem 0; */
         border-right: 1px rgba(0,0,0,.3) solid;
         border-bottom: 1px rgba(0,0,0,.3) solid;
-        /* transform: translateX(-50px) */
+
+        :hover{
+            background-color: #eff4f9;
+        }
     }
 
 
@@ -49,20 +52,37 @@ const HeaderContainer = styled.header `
             transition: all 0.2s;
             :hover {
                 border: 1px #ff6b00 solid;
+                box-shadow: 1px 2px 3px 2px rgba(0,0,0,.1)
             }
            
         }
         .contact-button{
             border-right: 1px #ff6b00 solid;
         }
+
+        
         @media (max-width: 1149px) {
-        margin: 2rem 3rem 0 3rem;
+        padding: 2rem 0;
+        margin: 0rem 3rem;
+
+
+        .subscribe-button, .contact-button {
+        font-size: 1.4rem;
+        border:none;
+        text-decoration: underline;
+        padding: 1rem;
+        margin: 0;
+        :hover{
+            border: none;
+            box-shadow: none;
+        }
+        }
     }
-        @media (max-width: 756px) {
-        margin: 2rem 1rem 0 1rem;
+        @media (max-width: 770px) {
+        margin: 0rem 2rem;
     
         .logo{
-            font-size: 2.4rem;
+        font-size: 2.4rem;
           margin: 0;
           padding: .5rem 1rem .6rem 0;
           border-bottom: none;
@@ -70,23 +90,20 @@ const HeaderContainer = styled.header `
 
         .subscribe-button, .contact-button {
         font-size: 1.2rem;
-        border:none;
-        text-decoration: underline;
         padding: 1rem;
         margin: 0;
-        :hover{
-            border: none;
-        }
+        
         }
 
 
     }
         @media (max-width: 567px) {
+        padding: 0;
         margin: 0;
         margin-top: .5rem;
             
         nav{
-            width: 60%;
+            width: 85%;
             margin: 0 auto;
             flex-direction: column;
             align-items: center;
@@ -129,9 +146,9 @@ const Header = props => {
     const [contactFormOpen, toggleContactForm] = useToggle(false)
 
     return(
-        <HeaderContainer>
+        <HeaderContainer id='top'>
             <nav>
-                <Link className="logo" to='/' id='top'>sageMachina</Link>
+                <Link className="logo" to='/' >sageMachina</Link>
             <div className="options" >
                 <button onClick={toggleContactForm} className='contact-button'> Contact</button>
                 <button onClick={toggleSubscribeForm} className='subscribe-button'> Subscribe</button>

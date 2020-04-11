@@ -245,6 +245,7 @@ const FormWrapper = styled.div`
             transition: all .2s;
             :hover, :focus  {
               border: 1px #ff6b00  solid;
+              box-shadow: 1px 2px 3px 2px rgba(0,0,0,.1);
             }
         }
 
@@ -286,6 +287,54 @@ const FormWrapper = styled.div`
             
             :hover{
                 background-color: #1c223e;
+                
+            }
+            
+        }
+        @media (max-width: 1149px) {
+          form{
+            button{
+              border: 1px #ff6b00 solid;
+              :hover, :focus  {
+              border: 1px #ff6b00  solid;
+              box-shadow: 1px 2px 3px 2px rgba(0,0,0,.1);
+            }
+            }
+          }
+        }
+        @media (max-width: 770px) {
+          form{
+            button{
+              :hover, :focus  {
+              border: 1px #ff6b00  solid;
+              box-shadow: none;
+            }
+            }
+
+          }
+        }
+        @media (max-width: 567px) {
+            .overlay{
+              display: none;
+            }
+            .drawer{
+            max-width: 100vw;
+            height: 100%;
+            }
+            form {
+              justify-content: space-around;
+              margin: 0;
+              .form-title{
+                margin: 0;
+                margin-top: 1.5rem;
+              }
+              label {
+                margin: 0;
+                font-size: 1.2rem;
+              }
+              input {
+                margin: 0;
+              }
             }
         }
 `

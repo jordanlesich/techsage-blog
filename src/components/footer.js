@@ -37,10 +37,10 @@ const FooterContainer = styled.footer `
         
 
     .about-section{
-        margin-top: 4rem;
+        margin: 4rem 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        margin-bottom: 4rem;
+       
     }
 
     .about-blog, .about-me{
@@ -107,13 +107,14 @@ const FooterContainer = styled.footer `
     }
 
     .home-link {
+        display: block;
+        text-align: center;
         font-size: 2.4rem;
         font-weight: 600;
         letter-spacing: -2px;
-        margin: 2rem auto;
+        margin: 1rem auto;
         text-decoration: underline;
-        width: 100%;
-        text-align: center;
+        
     }
 
     @media (max-width: 1149px) {
@@ -121,17 +122,29 @@ const FooterContainer = styled.footer `
         .inner-container{
             width: 85%;
         }
+        .request-button{
+            border: 1px #ff6b00 solid
+        }
     }
     @media (max-width: 856px) {
         .inner-container {
             width: 100%;
         }
     }
-    @media (max-width: 756px) {
+    @media (max-width: 770px) {
         margin: 0 1rem;
         .about-section{
             display: flex;
             flex-direction: column;
+        }
+
+        .about-blog, .about-me{
+            font-size: 1.2rem;
+        }
+        .about-blog p, .about-me p {
+            margin: 1rem 4rem;
+            line-height: 1.5;
+            text-align: left;
         }
         .about-me{
             margin: 0;
@@ -153,6 +166,10 @@ const FooterContainer = styled.footer `
         
         .contact-button, .subscribe-button {
             margin: 0;
+        }
+        .contact-button{
+            border-top: 1px rgba(255, 123, 0, 1) solid;
+            border-left: 1px rgba(255, 123, 0, 1) solid;
         }
         
     }
@@ -190,10 +207,7 @@ const FooterContainer = styled.footer `
             padding: .5rem 1rem;
             margin: 0 auto;
         }
-        .contact-button{
-            border-top: 1px rgba(255, 123, 0, 1) solid;
-            border-left: 1px rgba(255, 123, 0, 1) solid;
-        }
+        
         
 
     }
@@ -282,7 +296,7 @@ const Footer = props => {
                         <button className='subscribe-button' onClick={toggleSubscribeForm}>Subscribe</button>
                             {subscribeFormOpen && <SubscribeForm toggleSubscribeForm={toggleSubscribeForm} /> }
                 </div>
-                        <Link className='home-link'>Home</Link>
+                        <Link className='home-link' to='/'>Home</Link>
                 </>
                 
                 }

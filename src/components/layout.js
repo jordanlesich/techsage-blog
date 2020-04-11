@@ -37,8 +37,8 @@ grid-template-columns: auto 1000px auto;
   justify-content: center;
   margin: 0 3rem;
 }
-@media (max-width: 756px) {
-  margin: 0 1rem;
+@media (max-width: 770px) {
+  margin: 0 2rem;
 }
 @media (max-width: 567px) {
   width: 85%;

@@ -13,7 +13,7 @@ const TopArticle = props => {
   // }
 
   const isSmallTabletOrMobile = useMediaQuery({
-    query: '(max-width: 766px)'
+    query: '(max-width: 770px)'
   })
  
 
@@ -166,14 +166,15 @@ const StyleWrapper = styled.article`
       margin: 0;
     }
   }
-  @media (max-width: 766px) {
+  @media (max-width: 770px) {
 
     h2{
       text-align: center;
       margin-bottom: 2rem;
     }
     img{
-      max-width: 50vw;
+      max-width: 33vw;
+      height: auto;
       margin: 0 auto;
       display: block;
       float: right;
